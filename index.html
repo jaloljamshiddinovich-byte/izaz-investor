@@ -8,65 +8,164 @@
 <style>
 :root{
   color-scheme:light;
-  --bg:#f3f4f7;--card:#fff;--card-2:#f6f7fa;--ink:#101521;--ink-2:#4a5263;--muted:#8a93a3;--line:#e6e9ef;--track:#eceff4;
-  --accent:#e2701c;--accent-soft:rgba(226,112,28,.12);--hdr-a:#f08a2c;--hdr-b:#c4560d;
-  --good:#12915c;--good-soft:rgba(18,145,92,.12);--bad:#d23b3b;--bad-soft:rgba(210,59,59,.10);
-  --blue:#2f6fd6;--blue-soft:rgba(47,111,214,.12);--amber:#b7791f;--amber-soft:rgba(220,150,30,.15);
-  --teal:#0f8a8a;--teal-soft:rgba(15,138,138,.12);--gray-soft:rgba(120,128,140,.14);
-  --shadow:0 1px 2px rgba(16,24,40,.05),0 8px 22px rgba(16,24,40,.06);--r:18px
+  --bg:#f2f3f6;--card:#fff;--card-2:#f5f6f9;--ink:#0f1420;--ink-2:#465063;--muted:#7a8394;--line:#e9ecf1;--grid:#eceef2;--axis:#c7ccd6;--track:#eef0f4;--border:rgba(16,24,40,.05);
+  --accent:#e2701c;--accent-soft:rgba(226,112,28,.12);--hdr-a:#f39340;--hdr-b:#c4560d;
+  --good:#0f8a55;--good-soft:rgba(18,145,92,.12);--bad:#d23b3b;--bad-soft:rgba(210,59,59,.10);--warn:#9a5b06;--warn-soft:rgba(250,178,25,.20);
+  --s1:#e2701c;--s2:#2a78d6;--s3:#1baf7a;
+  --o1:#86b6ef;--o2:#5598e7;--o3:#2a78d6;--o4:#1c5cab;--o5:#104281;
+  --tip-bg:#121826;--tip-ink:#fff;--nav-bg:rgba(255,255,255,.94);
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 6px 20px rgba(16,24,40,.06);--r:20px
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#0d1016;--card:#171b23;--card-2:#1d222c;--ink:#f2f4f8;--ink-2:#b5bccb;--muted:#7f8899;--line:#262c37;--track:#232935;
-  --accent:#f39a4a;--accent-soft:rgba(243,154,74,.16);--hdr-a:#8f4310;--hdr-b:#5a2808;
-  --good:#3cc58a;--good-soft:rgba(60,197,138,.14);--bad:#f07272;--bad-soft:rgba(240,114,114,.14);
-  --blue:#6f9ff0;--blue-soft:rgba(111,159,240,.16);--amber:#e3b053;--amber-soft:rgba(227,176,83,.16);
-  --teal:#4cc6c6;--teal-soft:rgba(76,198,198,.14);--gray-soft:rgba(150,158,172,.16);--shadow:none
+  --bg:#0c0f15;--card:#161a22;--card-2:#1c212b;--ink:#f1f3f7;--ink-2:#b4bccb;--muted:#7f8899;--line:#252b36;--grid:#232935;--axis:#3a4252;--track:#222834;--border:rgba(255,255,255,.05);
+  --accent:#f0913f;--accent-soft:rgba(240,145,63,.16);--hdr-a:#a24c12;--hdr-b:#5a2808;
+  --good:#3cc58a;--good-soft:rgba(60,197,138,.14);--bad:#f07272;--bad-soft:rgba(240,114,114,.14);--warn:#e3b053;--warn-soft:rgba(227,176,83,.16);
+  --s1:#df6f22;--s2:#3987e5;--s3:#199e70;
+  --o1:#184f95;--o2:#256abf;--o3:#3987e5;--o4:#6da7ec;--o5:#9ec5f4;
+  --tip-bg:#eef1f6;--tip-ink:#0f1420;--nav-bg:rgba(22,26,34,.94);--shadow:none
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --bg:#0d1016;--card:#171b23;--card-2:#1d222c;--ink:#f2f4f8;--ink-2:#b5bccb;--muted:#7f8899;--line:#262c37;--track:#232935;
-    --accent:#f39a4a;--accent-soft:rgba(243,154,74,.16);--hdr-a:#8f4310;--hdr-b:#5a2808;
-    --good:#3cc58a;--good-soft:rgba(60,197,138,.14);--bad:#f07272;--bad-soft:rgba(240,114,114,.14);
-    --blue:#6f9ff0;--blue-soft:rgba(111,159,240,.16);--amber:#e3b053;--amber-soft:rgba(227,176,83,.16);
-    --teal:#4cc6c6;--teal-soft:rgba(76,198,198,.14);--gray-soft:rgba(150,158,172,.16);--shadow:none
+    --bg:#0c0f15;--card:#161a22;--card-2:#1c212b;--ink:#f1f3f7;--ink-2:#b4bccb;--muted:#7f8899;--line:#252b36;--grid:#232935;--axis:#3a4252;--track:#222834;--border:rgba(255,255,255,.05);
+    --accent:#f0913f;--accent-soft:rgba(240,145,63,.16);--hdr-a:#a24c12;--hdr-b:#5a2808;
+    --good:#3cc58a;--good-soft:rgba(60,197,138,.14);--bad:#f07272;--bad-soft:rgba(240,114,114,.14);--warn:#e3b053;--warn-soft:rgba(227,176,83,.16);
+    --s1:#df6f22;--s2:#3987e5;--s3:#199e70;
+    --o1:#184f95;--o2:#256abf;--o3:#3987e5;--o4:#6da7ec;--o5:#9ec5f4;
+    --tip-bg:#eef1f6;--tip-ink:#0f1420;--nav-bg:rgba(22,26,34,.94);--shadow:none
   }
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body.sub .logo{display:none}
 html,body{margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;min-height:100vh;padding-bottom:28px}
+body.has-nav{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
 button,input,select{font:inherit;color:inherit}
-.num{font-variant-numeric:tabular-nums}
-.hdr{background:linear-gradient(160deg,var(--hdr-a),var(--hdr-b));color:#fff;padding:14px 16px 20px;border-radius:0 0 26px 26px;position:relative;overflow:hidden}
-.hdr::after{content:"";position:absolute;right:-70px;top:-90px;width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none}
+.num,.tbl,.tick{font-variant-numeric:tabular-nums}
+.ic{display:block;flex:none}
+
+/* sarlavha */
+.hdr{background:radial-gradient(130% 150% at 100% 0%,var(--hdr-a) 0%,var(--hdr-b) 75%);color:#fff;padding:12px 16px 22px;border-radius:0 0 28px 28px;position:relative;overflow:hidden}
+.hdr::before{content:"";position:absolute;right:-60px;top:-80px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none}
+.hdr::after{content:"";position:absolute;left:-50px;bottom:-110px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none}
 .hdr-row{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
 .brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px}
-.logo{width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-weight:800;font-size:18px;flex:none}
+.logo{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-weight:800;font-size:18px;flex:none;letter-spacing:-.5px}
+body.sub .logo{display:none}
 .t1{font-weight:700;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.t2{font-size:12px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.iconbtn{background:rgba(255,255,255,.18);border:0;color:#fff;width:36px;height:36px;border-radius:11px;font-size:18px;cursor:pointer;flex:none}
-.back{background:rgba(255,255,255,.18);border:0;color:#fff;height:36px;padding:0 12px;border-radius:11px;cursor:pointer;flex:none;font-weight:600}
-.hero{position:relative;z-index:1;margin-top:16px}
+.t2{font-size:12.5px;opacity:.82;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iconbtn{background:rgba(255,255,255,.18);border:0;color:#fff;width:38px;height:38px;border-radius:12px;cursor:pointer;flex:none;display:grid;place-items:center}
+.back{background:rgba(255,255,255,.18);border:0;color:#fff;height:38px;padding:0 12px 0 8px;border-radius:12px;cursor:pointer;flex:none;font-weight:600;display:flex;align-items:center;gap:2px}
+.hero{position:relative;z-index:1;margin-top:18px}
+.hero:empty{display:none}
 .hero .lbl{font-size:13px;opacity:.85}
-.hero .big{font-size:32px;font-weight:800;letter-spacing:-.5px;margin-top:2px}
-.hero .sub{font-size:13px;opacity:.9;margin-top:4px}
-.tabs{display:flex;gap:6px;padding:12px 16px 0;position:sticky;top:0;z-index:5;background:var(--bg)}
-.tab{flex:1;border:0;background:var(--card);color:var(--ink-2);padding:9px 6px;border-radius:12px;font-weight:600;font-size:14px;cursor:pointer;box-shadow:var(--shadow)}
-.tab.on{background:var(--accent);color:#fff}
-main{padding:12px 16px 0}
-.sec{margin:18px 2px 8px;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.hero .big{font-size:40px;font-weight:750;letter-spacing:-1px;line-height:1.1;margin-top:4px;white-space:nowrap}
+.hero .big.sm{font-size:26px;letter-spacing:-.4px}
+.hchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.hchips span{background:rgba(255,255,255,.16);border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:600;white-space:nowrap}
+
+/* pastki menyu */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:4px;background:var(--nav-bg);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:6px 8px calc(8px + env(safe-area-inset-bottom))}
+.nav button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer}
+.nav .ib{width:56px;height:30px;border-radius:15px;display:grid;place-items:center;transition:background .15s}
+.nav button.on{color:var(--ink)}
+.nav button.on .ib{background:var(--accent-soft);color:var(--accent)}
+
+main{padding:14px 16px 0;max-width:640px;margin:0 auto}
+.sec{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:24px 4px 10px}
+.sec h2{font-size:17px;font-weight:700;margin:0;letter-spacing:-.2px}
+.sec .aside{font-size:13px;color:var(--muted)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)}
-.kpi .l{font-size:12.5px;color:var(--muted)}
-.kpi .v{font-size:19px;font-weight:700;margin-top:3px;white-space:nowrap}
-.kpi .n{font-size:11.5px;color:var(--muted);margin-top:2px}
-.kpi.wide{grid-column:1/-1}
+.card{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);border:1px solid var(--border)}
+main>.card+.card,main>.card+.list,main>.list+.card{margin-top:12px}
 .pos{color:var(--good)}.neg{color:var(--bad)}
-.list{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
-.row{display:flex;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid var(--line);cursor:pointer}
+
+/* ko'rsatkich plitkalari */
+.tile{display:flex;flex-direction:column;min-width:0;padding:14px}
+.tile.wide{grid-column:1/-1}
+.tile-h{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12.5px;font-weight:600}
+.tile-h span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tico{width:28px;height:28px;border-radius:9px;background:var(--card-2);color:var(--ink-2);display:grid;place-items:center;flex:none}
+.tile .v{font-size:20px;font-weight:700;margin-top:10px;white-space:nowrap;letter-spacing:-.3px}
+.tile .n{font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .spark{display:block;width:100%;height:auto;margin-top:10px}
+.link{cursor:pointer}
+.tile.link .tile-h::after{content:"›";margin-left:auto;font-size:18px;line-height:1;color:var(--muted)}
+
+/* grafik kartochkasi */
+.cc-h{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}
+.cc-h h3{margin:0;font-size:15.5px;font-weight:700;letter-spacing:-.2px}
+.cc-h p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.tbtn{border:1px solid var(--line);background:var(--card);color:var(--muted);width:32px;height:32px;border-radius:10px;display:grid;place-items:center;cursor:pointer;flex:none}
+.tbtn.on{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.chart{width:100%;height:auto;display:block;overflow:visible;touch-action:pan-y}
+.chart text{font-family:inherit}
+.chart .grid{stroke:var(--grid);stroke-width:1}
+.chart .base{stroke:var(--axis);stroke-width:1}
+.chart .tick,.chart .xl{fill:var(--muted);font-size:10.5px}
+.chart .vl{fill:var(--ink-2);font-size:11px;font-weight:700}
+.chart .hit{fill:transparent;cursor:pointer;outline:none}
+.chart .guide{stroke:var(--axis);stroke-width:1;opacity:0}
+.chart .guide.hl{opacity:1}
+.mk{transition:opacity .15s,filter .15s;outline:none}
+.mk.hl{filter:brightness(1.12)}
+.dim .mk:not(.hl){opacity:.45}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink-2);margin-bottom:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .v{color:var(--ink);font-weight:700}
+.sw{display:inline-block;width:10px;height:10px;border-radius:3px;flex:none}
+.sw.ln{height:3px;width:14px;border-radius:2px}
+.empty{color:var(--muted);font-size:13px;padding:18px 0;text-align:center}
+
+/* donut */
+.dn{display:flex;align-items:center;gap:16px}
+.dn svg{flex:none;width:128px;height:128px}
+.dn .dc-v{fill:var(--ink);font-size:17px;font-weight:700}
+.dn .dc-l{fill:var(--muted);font-size:10.5px}
+.lg{flex:1;min-width:0}
+.lg-r{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:1px 8px;padding:7px 0;border-top:1px solid var(--line)}
+.lg-r:first-child{border-top:0;padding-top:0}
+.lg-r:last-child{padding-bottom:0}
+.lg-r .k{font-size:12.5px;color:var(--ink-2);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lg-r .v{grid-column:2;font-size:14px;font-weight:700;white-space:nowrap}
+.lg-r .v small{font-size:11.5px;color:var(--muted);font-weight:500;margin-left:6px}
+.lg-r.link .k::after{content:" ›";color:var(--muted)}
+@media (max-width:350px){.dn{flex-direction:column;align-items:stretch}.dn svg{margin:0 auto}}
+
+/* yig'ma chiziq */
+.stk{display:flex;gap:2px;height:14px;border-radius:7px;overflow:hidden;background:var(--track)}
+.stk i{display:block;height:100%;min-width:4px;cursor:pointer}
+.rows{margin-top:10px}
+.pr{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px}
+.pr:first-child{border-top:0}
+.pr .k{color:var(--ink-2);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pr .c{font-weight:700;text-align:right;white-space:nowrap}
+.pr .s{color:var(--muted);font-size:12.5px;text-align:right;white-space:nowrap;min-width:72px}
+.pr.link .k::after{content:" ›";color:var(--muted)}
+.pr .ok{width:16px;height:16px;border-radius:50%;background:var(--good-soft);color:var(--good);display:grid;place-items:center}
+
+/* gorizontal ustunlar */
+.hb-r{padding:9px 0;border-top:1px solid var(--line)}
+.hb-r:first-child{border-top:0;padding-top:2px}
+.hb-t{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px}
+.hb-t .k{color:var(--ink-2);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hb-t .v{font-weight:700;white-space:nowrap}
+.hb-b{height:8px;margin-top:6px}
+.hb-b i{display:block;height:100%;border-radius:0 4px 4px 0;min-width:3px}
+.hb-s{font-size:11.5px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb-r.link .hb-t .k::after{content:" ›";color:var(--muted)}
+
+/* metr */
+.meter{height:10px;border-radius:5px;background:var(--accent-soft);overflow:hidden}
+.meter i{display:block;height:100%;border-radius:0 5px 5px 0;background:var(--accent)}
+.mrow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.mrow .big2{font-size:24px;font-weight:750;letter-spacing:-.5px}
+.mrow .s{font-size:12.5px;color:var(--muted)}
+
+/* ro'yxatlar */
+.list{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--border);overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);cursor:pointer}
 .row:first-child{border-top:0}
 .row.static{cursor:default}
 .row .main{flex:1;min-width:0}
@@ -75,71 +174,87 @@ main{padding:12px 16px 0}
 .row .end{text-align:right;flex:none}
 .row .end .v{font-weight:700}
 .row .end .s{font-size:12px;color:var(--muted)}
-.pill{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
-.st0{background:var(--gray-soft);color:var(--ink-2)}.st1{background:var(--blue-soft);color:var(--blue)}.st2,.st3{background:var(--amber-soft);color:var(--amber)}
-.st4{background:var(--teal-soft);color:var(--teal)}.st5{background:var(--good-soft);color:var(--good)}.st9{background:var(--bad-soft);color:var(--bad)}
-.bar{height:8px;background:var(--track);border-radius:99px;overflow:hidden;margin-top:6px}
-.bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
-.chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+.av{width:40px;height:40px;border-radius:13px;background:var(--card-2);color:var(--ink-2);display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.av.in{background:var(--accent-soft);color:var(--accent)}
+.av.out{background:var(--good-soft);color:var(--good)}
+.mini{display:flex;gap:2px;height:5px;border-radius:3px;overflow:hidden;margin-top:7px;background:var(--track)}
+.mini i{display:block;height:100%}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:2px 8px 2px 7px;border-radius:999px;background:var(--card-2);color:var(--ink-2);white-space:nowrap;vertical-align:1px}
+.pill .dot{width:7px;height:7px;border-radius:50%;flex:none}
+.pill.done{background:var(--good-soft);color:var(--good)}
+.pill.unk{background:var(--bad-soft);color:var(--bad)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:13px;white-space:nowrap;cursor:pointer;color:var(--ink-2)}
-.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.search{width:100%;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 12px;margin-bottom:10px;outline:none}
-.search:focus{border-color:var(--accent)}
-.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
-.tbl th{font-size:11.5px;color:var(--muted);font-weight:600;text-align:right;padding:8px 6px;border-bottom:1px solid var(--line)}
-.tbl th:first-child,.tbl td:first-child{text-align:left}
-.tbl td{text-align:right;padding:9px 6px;border-bottom:1px solid var(--line)}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;color:var(--ink-2)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--card)}
+.seg{display:flex;background:var(--track);border-radius:12px;padding:3px;gap:2px;margin-bottom:12px}
+.seg button{flex:1;border:0;background:none;padding:7px 6px;border-radius:9px;font-size:13px;font-weight:600;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(16,24,40,.12)}
+.search{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:0 12px;margin-bottom:10px;color:var(--muted)}
+.search input{flex:1;border:0;background:none;outline:none;padding:11px 0;color:var(--ink);min-width:0}
+.search:focus-within{border-color:var(--accent)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{font-size:11.5px;color:var(--muted);font-weight:600;text-align:right;padding:7px 6px;border-bottom:1px solid var(--line)}
+.tbl th:first-child,.tbl td:first-child{text-align:left;padding-left:0}
+.tbl th:last-child,.tbl td:last-child{padding-right:0}
+.tbl td{text-align:right;padding:8px 5px;border-bottom:1px solid var(--line);white-space:nowrap}
 .tbl tr:last-child td{border-bottom:0}
-.kv{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-top:1px solid var(--line)}
+.tblw{overflow-x:auto}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-top:1px solid var(--line)}
 .kv:first-child{border-top:0}
 .kv .k{color:var(--muted)}
 .kv .v{font-weight:600;text-align:right}
-.steps{display:flex;gap:4px;margin:12px 0 4px}
+.kv.link .v::after{content:" ›";color:var(--muted);font-weight:400}
+.steps{display:flex;gap:4px;margin:4px 0 6px}
 .steps i{flex:1;height:6px;border-radius:99px;background:var(--track)}
-.steps i.on{background:var(--accent)}
 .steps-l{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
 .photos{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.photos img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;background:var(--track);cursor:zoom-in}
-.viewer{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;z-index:50}
+.photos img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;background:var(--track);cursor:zoom-in}
+.viewer{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;z-index:80}
 .viewer img{max-width:100%;max-height:100%}
 .center{text-align:center;padding:40px 16px;color:var(--ink-2)}
 .center h2{color:var(--ink);margin:10px 0 6px;font-size:20px}
 .idbox{font:700 22px/1.2 ui-monospace,Menlo,monospace;background:var(--card);border-radius:14px;padding:14px;margin:14px auto 10px;max-width:260px;box-shadow:var(--shadow);user-select:all}
 .btn{border:0;background:var(--accent);color:#fff;padding:11px 18px;border-radius:12px;font-weight:600;cursor:pointer}
-.btn.ghost{background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
-.spin{width:28px;height:28px;border:3px solid var(--track);border-top-color:var(--accent);border-radius:50%;margin:0 auto;animation:sp 0.8s linear infinite}
+.spin{width:28px;height:28px;border:3px solid var(--track);border-top-color:var(--accent);border-radius:50%;margin:0 auto;animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#1d222c;color:#fff;padding:9px 14px;border-radius:12px;font-size:13.5px;opacity:0;transition:.2s;pointer-events:none;z-index:60}
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--tip-bg);color:var(--tip-ink);padding:9px 14px;border-radius:12px;font-size:13.5px;opacity:0;transition:.2s;pointer-events:none;z-index:60}
 .toast.show{opacity:1;transform:translateX(-50%)}
-.warn{background:var(--amber-soft);color:var(--amber);border-radius:14px;padding:10px 12px;font-size:13px;margin-top:10px}
-.foot{text-align:center;color:var(--muted);font-size:11.5px;margin-top:22px}
+.warn{display:flex;gap:10px;align-items:flex-start;background:var(--warn-soft);color:var(--warn);border-radius:14px;padding:11px 12px;font-size:13px;margin-top:10px}
+.banner{display:flex;align-items:center;gap:12px}
+.banner .main{flex:1;min-width:0}
+.banner .l{font-size:12.5px;color:var(--muted);font-weight:600}
+.banner .v{font-size:22px;font-weight:750;letter-spacing:-.4px;margin-top:2px}
+.foot{text-align:center;color:var(--muted);font-size:11.5px;margin-top:24px}
 .mono{font-family:ui-monospace,Menlo,monospace;font-size:12.5px}
-.split{display:flex;height:10px;border-radius:99px;overflow:hidden;background:var(--track);margin:8px 0}
-.split i{display:block;height:100%}
-.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--ink-2)}
-.legend b{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px;vertical-align:middle}
-.kv.link,.kpi.link{cursor:pointer}
-.kv.link .v::after,.kpi.link .l::after{content:" ›";color:var(--muted);font-weight:400}
 .row.open{background:var(--card-2)}
 .entries{background:var(--card-2);padding:2px 14px 10px;border-top:1px solid var(--line)}
 .ent{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px dashed var(--line);font-size:13px}
 .ent:first-child{border-top:0}
 .ent .m{color:var(--muted);font-size:12px;margin-top:1px}
 .ent .a{font-weight:600;white-space:nowrap;text-align:right}
+.bar4{height:4px;margin-top:7px;border-radius:0 2px 2px 0}
+.tip{position:fixed;z-index:70;pointer-events:none;background:var(--tip-bg);color:var(--tip-ink);border-radius:12px;padding:8px 11px;font-size:12.5px;box-shadow:0 10px 28px rgba(0,0,0,.22);max-width:250px;opacity:0;transition:opacity .12s}
+.tip.show{opacity:1}
+.tip .tt{opacity:.7;font-size:11.5px;margin-bottom:4px}
+.tip .tr{display:flex;align-items:center;gap:7px;white-space:nowrap;line-height:1.5}
+.tip .tr b{font-weight:700}
+.tip .tr span:last-child{opacity:.75}
+.tip .key{width:12px;height:3px;border-radius:2px;flex:none}
 </style>
 </head>
 <body>
 <header class="hdr">
   <div class="hdr-row">
-    <button id="back" class="back" hidden>← Orqaga</button>
-    <div class="brand"><div class="logo">I</div><div style="min-width:0"><div class="t1" id="title">Izaz</div><div class="t2" id="sub">Investorlar kabineti</div></div></div>
-    <button id="refresh" class="iconbtn" title="Yangilash" hidden>↻</button>
+    <button id="back" class="back" hidden><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>Orqaga</button>
+    <div class="brand"><div class="logo">IZ</div><div style="min-width:0"><div class="t1" id="title">Izaz</div><div class="t2" id="sub">Investorlar kabineti</div></div></div>
+    <button id="refresh" class="iconbtn" title="Yangilash" aria-label="Yangilash" hidden><svg class="ic" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg></button>
   </div>
   <div class="hero" id="hero"></div>
 </header>
-<nav id="tabs" class="tabs" hidden></nav>
 <main id="main"><div class="center"><div class="spin"></div><p>Yuklanmoqda…</p></div></main>
+<nav id="nav" class="nav" hidden></nav>
+<div id="tip" class="tip" role="tooltip"></div>
 <div id="toast" class="toast"></div>
 
 <script>
@@ -152,27 +267,80 @@ main{padding:12px 16px 0}
   var inTG = !!(tg && tg.initData);
   var gsr = window.google && window.google.script && window.google.script.run;
   var STATUSES = ['Xitoy zavodda', 'Xitoy zavoddan chiqdi', 'Chegaraga keldi', 'Chegaradan chiqdi', 'Toshkent skladiga yetib keldi', 'Sotilgan'];
-  var SHORT = ['Zavodda', 'Yo\'lda', 'Chegarada', 'O\'tdi', 'Skladda', 'Sotildi'];
-  var state = { init: '', data: null, tab: 'umumiy', stack: [], filter: '', q: '', iq: '', sort: 'inv', costs: {}, open: -1 };
+  var SHORT = ['Zavodda', 'Yo\'lda', 'Chegarada', 'Chegaradan o\'tdi', 'Skladda', 'Sotildi'];
+  var STAGE = ['Xitoy zavodida', 'Zavoddan chiqdi', 'Chegaraga keldi', 'Chegaradan o\'tdi', 'Toshkent skladida', 'Sotilgan'];
+  var OY = ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'];
+  var OYF = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
+  var CG = ['Xarid narxi', 'Logistika', 'Bojxona va boshqa'];
+  var state = { init: '', data: null, tab: 'asosiy', itab: 'kabinet', stack: [], filter: '', q: '', iq: '', sort: 'inv', costs: {}, open: -1, period: 'all', metric: 's', tbl: {} };
+  var TIPS = [], CID = 0;
 
   /* ===== yordamchi ===== */
   function $(s) { return document.querySelector(s); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  function money(n) {
-    n = Math.round(Number(n) || 0);
-    var s = Math.abs(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-    return (n < 0 ? '−' : '') + s + ' $';
+  function grp(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+  function money(n) { n = Math.round(Number(n) || 0); return (n < 0 ? '−' : '') + grp(Math.abs(n)) + ' $'; }
+  function compact(n) {
+    n = Number(n) || 0; var a = Math.abs(n), s;
+    if (a >= 1e6) s = (a / 1e6).toFixed(a >= 1e7 ? 0 : 2).replace(/\.?0+$/, '') + 'M';
+    else if (a >= 1e3) s = (a / 1e3).toFixed(a >= 1e4 ? 0 : 1).replace(/\.0$/, '') + 'K';
+    else s = String(Math.round(a));
+    return (n < 0 ? '−' : '') + s.replace('.', ',');
   }
+  function cmoney(n) { return compact(n) + ' $'; }
   function pct(n) { return Math.round((Number(n) || 0) * 100) + '%'; }
+  function pct1(n) { var v = Math.round((Number(n) || 0) * 1000) / 10; return String(v).replace('.', ',') + '%'; }
+  function r1(n) { return Math.round(n * 10) / 10; }
+  function sum(a, f) { return a.reduce(function (s, x) { return s + ((f ? f(x) : x) || 0); }, 0); }
   function same(a, b) { return String(a || '').trim().toLowerCase() === String(b || '').trim().toLowerCase(); }
   function stIdx(s) { var i = STATUSES.indexOf(s); return i < 0 ? 9 : i; }
-  function pill(s) { var i = stIdx(s); return '<span class="pill st' + i + '">' + esc(i < 9 ? SHORT[i] : (s || '—')) + '</span>'; }
-  function ym(s) { var p = String(s).split('-'); return p.length === 2 ? p[1] + '.' + p[0] : s; }
+  function pill(s) {
+    var i = stIdx(s);
+    if (i === 5) return '<span class="pill done">' + ic('check', 12, 2.6) + 'Sotildi</span>';
+    if (i === 9) return '<span class="pill unk">' + esc(s || '—') + '</span>';
+    return '<span class="pill"><i class="dot" style="background:var(--o' + (i + 1) + ')"></i>' + esc(SHORT[i]) + '</span>';
+  }
+  function parseD(s) { var m = String(s || '').match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})/); return m ? new Date(+m[3], +m[2] - 1, +m[1]) : null; }
+  function ymOf(s) { var d = parseD(s); return d ? d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) : ''; }
+  function ymNow() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2); }
+  function ymL(ym) { var p = String(ym).split('-'); return p.length === 2 ? OY[+p[1] - 1] : ym; }
+  function ymS(ym) { var p = String(ym).split('-'); return p.length === 2 ? OY[+p[1] - 1] + ' ' + p[0] : ym; }
+  function ymFull(ym) { var p = String(ym).split('-'); return p.length === 2 ? OYF[+p[1] - 1] + ' ' + p[0] : ym; }
+  function ymRange(a, b) {
+    var out = []; if (!a || !b || a > b) return out;
+    var y = +a.slice(0, 4), m = +a.slice(5, 7);
+    while (out.length < 120) { var k = y + '-' + ('0' + m).slice(-2); out.push(k); if (k === b) break; m++; if (m > 12) { m = 1; y++; } }
+    return out;
+  }
+  function days(a, b) { var x = parseD(a), y = parseD(b); return x && y ? Math.round((y - x) / 864e5) : null; }
+  function initials(n) { var w = String(n || '').trim().split(/\s+/).filter(String); return ((w[0] || '?').charAt(0) + (w[1] ? w[1].charAt(0) : '')).toUpperCase(); }
   var toastT;
   function toast(m, ms) { var t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, ms || 2000); }
   function costLabel(n) { return n === 'Summa USD' ? 'Xarid summasi' : String(n).replace(/ USD$/, '').replace(/ sbs$/, ''); }
-  function kv(k, v, cls, attr) { return '<div class="kv' + (attr ? ' link" ' + attr + '>' : '">') + '<span class="k">' + esc(k) + '</span><span class="v num ' + (cls || '') + '">' + v + '</span></div>'; }
-  function kpiCard(l, v, n, cls, wide, attr) { return '<div class="card kpi' + (wide ? ' wide' : '') + (attr ? ' link" ' + attr + '>' : '">') + '<div class="l">' + esc(l) + '</div><div class="v num ' + (cls || '') + '">' + v + '</div>' + (n ? '<div class="n">' + esc(n) + '</div>' : '') + '</div>'; }
+  function costGroup(n) { return n === 'Summa USD' ? 0 : (/logistika/i.test(n) ? 1 : 2); }
+  function kv(k, v, cls, attr) { return '<div class="kv' + (attr ? ' link" ' + attr + '>' : '">') + '<span class="k">' + esc(k) + '</span><span class="v ' + (cls || '') + '">' + v + '</span></div>'; }
+
+  /* ===== ikonlar ===== */
+  var ICONS = {
+    home: '<path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/>',
+    chart: '<path d="M3 21h18"/><rect x="5" y="11" width="3.2" height="7" rx="1"/><rect x="10.4" y="5" width="3.2" height="13" rx="1"/><rect x="15.8" y="8.5" width="3.2" height="9.5" rx="1"/>',
+    users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.3-5.5 6.5-5.5s5.9 2.1 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c2 .7 3.2 2.6 3.5 5.2"/>',
+    truck: '<path d="M2.5 6h10.5v10H2.5zM13 9h4.3l3.2 3.4V16H13"/><circle cx="6.5" cy="17.5" r="1.9"/><circle cx="16.8" cy="17.5" r="1.9"/>',
+    wallet: '<path d="M4 7V6a2 2 0 0 1 2-2h11v3"/><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M16 13.5h2"/>',
+    coins: '<circle cx="12" cy="12" r="9"/><path d="M15 9.4c-.5-.9-1.6-1.4-3-1.4-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.4M12 6.5v11"/>',
+    trend: '<path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>',
+    box: '<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    percent: '<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
+    gift: '<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8c-1.5-3-5-3.5-5-1.2C7 8 9 8 12 8zm0 0c1.5-3 5-3.5 5-1.2C17 8 15 8 12 8z"/>',
+    table: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16"/>',
+    check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+    alert: '<path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.4v.1"/>',
+    search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+    layers: '<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>',
+    receipt: '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/>'
+  };
+  function ic(n, s, w) { return '<svg class="ic" viewBox="0 0 24 24" width="' + (s || 20) + '" height="' + (s || 20) + '" fill="none" stroke="currentColor" stroke-width="' + (w || 1.8) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[n] || '') + '</svg>'; }
 
   /* ===== mavzu ===== */
   function setTheme(hash) {
@@ -184,8 +352,8 @@ main{padding:12px 16px 0}
     }
     if (dark != null) document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
     if (inTG) {
-      try { tg.setHeaderColor(dark ? '#8f4310' : '#f08a2c'); } catch (e) {}
-      try { tg.setBackgroundColor(dark ? '#0d1016' : '#f3f4f7'); } catch (e) {}
+      try { tg.setHeaderColor(dark ? '#7e3a0e' : '#d96a1c'); } catch (e) {}
+      try { tg.setBackgroundColor(dark ? '#0c0f15' : '#f2f3f6'); } catch (e) {}
     }
   }
   function lum(hex) {
@@ -247,10 +415,218 @@ main{padding:12px 16px 0}
     });
   }
 
+  /* ===== tooltip ===== */
+  function tip(title, rows) { TIPS.push({ t: title, r: rows || [] }); return TIPS.length - 1; }
+  var tipEl = null, tipOn = null;
+  function showTip(el, x, y) {
+    var T = TIPS[+el.getAttribute('data-tip')];
+    if (!T) return;
+    var box = $('#tip');
+    if (tipOn !== el) {
+      hideTip();
+      box.textContent = '';
+      if (T.t) { var h = document.createElement('div'); h.className = 'tt'; h.textContent = T.t; box.appendChild(h); }
+      T.r.forEach(function (r) {
+        var row = document.createElement('div'); row.className = 'tr';
+        if (r.c) { var k = document.createElement('i'); k.className = 'key'; k.style.background = r.c; row.appendChild(k); }
+        var b = document.createElement('b'); b.textContent = r.v; row.appendChild(b);
+        if (r.k) { var s = document.createElement('span'); s.textContent = r.k; row.appendChild(s); }
+        box.appendChild(row);
+      });
+      var hl = el.getAttribute('data-hl');
+      tipEl = hl ? document.getElementById(hl) : (el.classList.contains('mk') ? el : null);
+      if (tipEl) { tipEl.classList.add('hl'); var c = tipEl.closest('.chart,.dn,.stk'); if (c) c.classList.add('dim'); }
+      tipOn = el;
+    }
+    if (x == null) { var rc = el.getBoundingClientRect(); x = rc.left + rc.width / 2; y = rc.top + rc.height / 2; }
+    box.classList.add('show');
+    var w = box.offsetWidth, hh = box.offsetHeight, vw = window.innerWidth;
+    var left = Math.max(8, Math.min(vw - w - 8, x - w / 2)), top = y - hh - 14;
+    if (top < 8) top = y + 18;
+    box.style.left = left + 'px'; box.style.top = top + 'px';
+  }
+  function hideTip() {
+    var box = $('#tip'); if (box) box.classList.remove('show');
+    if (tipEl) { tipEl.classList.remove('hl'); var c = tipEl.closest('.chart,.dn,.stk'); if (c) c.classList.remove('dim'); }
+    tipEl = null; tipOn = null;
+  }
+
+  /* ===== grafiklar ===== */
+  function niceStep(range, n) { var raw = range / n, p = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), f = raw / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+  function scaleY(min, max, n) {
+    if (max <= min) max = min + 1;
+    var st = niceStep(max - min, n || 4), lo = Math.floor(min / st) * st, hi = Math.ceil(max / st) * st, t = [];
+    for (var v = lo; v <= hi + st / 2; v += st) t.push(Math.round(v * 1e6) / 1e6);
+    return { lo: lo, hi: hi, ticks: t };
+  }
+  function barPath(x, y0, y1, w, r) {
+    var h = Math.abs(y0 - y1); if (h < 0.6) return '';
+    r = Math.min(r, h, w / 2); var up = y1 < y0, e = up ? y1 + r : y1 - r;
+    return 'M' + x + ',' + y0 + 'V' + r1(e) + 'Q' + x + ',' + y1 + ' ' + r1(x + r) + ',' + y1 + 'H' + r1(x + w - r) + 'Q' + r1(x + w) + ',' + y1 + ' ' + r1(x + w) + ',' + r1(e) + 'V' + y0 + 'Z';
+  }
+  function frame(W, H, L, R, T, B, sc, tickFmt) {
+    var ph = H - T - B, y = function (v) { return T + ph - (v - sc.lo) / (sc.hi - sc.lo) * ph; }, s = '';
+    sc.ticks.forEach(function (t) { var yy = r1(y(t)); s += '<line class="' + (t === 0 ? 'base' : 'grid') + '" x1="' + L + '" x2="' + (W - R) + '" y1="' + yy + '" y2="' + yy + '"/><text class="tick" x="' + (L - 6) + '" y="' + r1(yy + 3.5) + '" text-anchor="end">' + esc((tickFmt || compact)(t)) + '</text>'; });
+    return { s: s, y: y, ph: ph };
+  }
+  /* Ustunli grafik: bitta qator */
+  function colChart(pts, o) {
+    o = o || {};
+    var id = 'c' + (++CID), W = 320, H = o.h || 176, L = 38, R = 4, T = 18, B = 24;
+    var vals = pts.map(function (p) { return p.v || 0; });
+    if (!pts.length || !vals.some(function (v) { return v; })) return '<div class="empty">' + esc(o.empty || 'Bu davrda ma\'lumot yo\'q') + '</div>';
+    var sc = scaleY(Math.min(0, Math.min.apply(null, vals)), Math.max(0, Math.max.apply(null, vals)), 4);
+    var F = frame(W, H, L, R, T, B, sc, o.tick), n = pts.length, band = (W - L - R) / n, bw = Math.min(24, band * 0.62);
+    var color = o.color || 'var(--s1)', every = n > 8 ? Math.ceil(n / 7) : 1, s = F.s;
+    var mi = 0; vals.forEach(function (v, i) { if (v > vals[mi]) mi = i; });
+    pts.forEach(function (p, i) {
+      var cx = L + band * i + band / 2, path = barPath(r1(cx - bw / 2), r1(F.y(0)), r1(F.y(p.v || 0)), r1(bw), 4);
+      if (path) s += '<path id="' + id + '-' + i + '" class="mk" d="' + path + '" fill="' + color + '"/>';
+      if (p.l && (i % every === 0 || i === n - 1)) s += '<text class="xl" x="' + r1(cx) + '" y="' + (H - 7) + '" text-anchor="middle">' + esc(p.l) + '</text>';
+    });
+    if (o.mark !== false && vals[mi] > 0) s += '<text class="vl" x="' + r1(L + band * mi + band / 2) + '" y="' + r1(F.y(vals[mi]) - 6) + '" text-anchor="middle">' + esc((o.vfmt || compact)(vals[mi])) + '</text>';
+    pts.forEach(function (p, i) {
+      s += '<rect class="hit" x="' + r1(L + band * i) + '" y="' + T + '" width="' + r1(band) + '" height="' + r1(F.ph) + '" tabindex="0" data-hl="' + id + '-' + i + '" data-tip="' + tip(p.t || p.l, [{ c: color, v: (o.fmt || money)(p.v || 0), k: o.name || '' }].concat(p.extra || [])) + '"/>';
+    });
+    return '<svg class="chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(o.name || '') + '">' + s + '</svg>';
+  }
+  /* Guruhlangan ustunlar: bir xil birlikdagi 2-3 qator */
+  function groupChart(cats, series, o) {
+    o = o || {};
+    var id = 'c' + (++CID), W = 320, H = o.h || 176, L = 38, R = 4, T = 14, B = 24;
+    var all = []; series.forEach(function (s) { all = all.concat(s.vals); });
+    if (!cats.length || !all.some(function (v) { return v; })) return '<div class="empty">' + esc(o.empty || 'Bu davrda ma\'lumot yo\'q') + '</div>';
+    var sc = scaleY(Math.min(0, Math.min.apply(null, all)), Math.max(0, Math.max.apply(null, all)), 4);
+    var F = frame(W, H, L, R, T, B, sc), n = cats.length, k = series.length, band = (W - L - R) / n;
+    var bw = Math.min(16, (band * 0.72 - (k - 1) * 2) / k), gw = k * bw + (k - 1) * 2, every = n > 8 ? Math.ceil(n / 7) : 1, s = F.s;
+    cats.forEach(function (c, i) {
+      var cx = L + band * i + band / 2;
+      series.forEach(function (se, j) {
+        var path = barPath(r1(cx - gw / 2 + j * (bw + 2)), r1(F.y(0)), r1(F.y(se.vals[i] || 0)), r1(bw), 4);
+        if (path) s += '<path class="mk" id="' + id + '-' + i + '-' + j + '" d="' + path + '" fill="' + se.c + '"/>';
+      });
+      if (i % every === 0 || i === n - 1) s += '<text class="xl" x="' + r1(cx) + '" y="' + (H - 7) + '" text-anchor="middle">' + esc(c.l) + '</text>';
+    });
+    cats.forEach(function (c, i) {
+      s += '<rect class="hit" x="' + r1(L + band * i) + '" y="' + T + '" width="' + r1(band) + '" height="' + r1(F.ph) + '" tabindex="0" data-tip="' + tip(c.t || c.l, series.map(function (se) { return { c: se.c, v: money(se.vals[i] || 0), k: se.name }; })) + '"/>';
+    });
+    return legend(series.map(function (se) { return { c: se.c, l: se.name, v: o.legendV ? o.legendV(se) : '' }; })) +
+      '<svg class="chart" viewBox="0 0 ' + W + ' ' + H + '" role="img">' + s + '</svg>';
+  }
+  /* Chiziqli grafik: kumulyativ qatorlar, ko'ndalang chiziq bilan */
+  function lineChart(cats, series, o) {
+    o = o || {};
+    var id = 'c' + (++CID), W = 320, H = o.h || 176, L = 38, R = 8, T = 12, B = 24;
+    var all = []; series.forEach(function (s) { all = all.concat(s.vals); });
+    if (cats.length < 2 || !all.some(function (v) { return v; })) return '<div class="empty">' + esc(o.empty || 'Grafik uchun kamida 2 oy kerak') + '</div>';
+    var sc = scaleY(Math.min(0, Math.min.apply(null, all)), Math.max.apply(null, all), 4);
+    var F = frame(W, H, L, R, T, B, sc), n = cats.length, pw = W - L - R, step = pw / (n - 1), every = n > 8 ? Math.ceil(n / 7) : 1, s = F.s;
+    var X = function (i) { return r1(L + step * i); };
+    cats.forEach(function (c, i) {
+      s += '<line class="guide" id="' + id + '-g' + i + '" x1="' + X(i) + '" x2="' + X(i) + '" y1="' + T + '" y2="' + r1(T + F.ph) + '"/>';
+      if (i % every === 0 || i === n - 1) s += '<text class="xl" x="' + X(i) + '" y="' + (H - 7) + '" text-anchor="' + (i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle') + '">' + esc(c.l) + '</text>';
+    });
+    series.forEach(function (se, j) {
+      var d = se.vals.map(function (v, i) { return (i ? 'L' : 'M') + X(i) + ',' + r1(F.y(v || 0)); }).join('');
+      if (j === 0 && o.area !== false) s += '<path d="' + d + 'L' + X(n - 1) + ',' + r1(F.y(Math.max(sc.lo, 0))) + 'L' + X(0) + ',' + r1(F.y(Math.max(sc.lo, 0))) + 'Z" fill="' + se.c + '" opacity=".1"/>';
+      s += '<path d="' + d + '" fill="none" stroke="' + se.c + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    });
+    series.forEach(function (se) { s += '<circle cx="' + X(n - 1) + '" cy="' + r1(F.y(se.vals[n - 1] || 0)) + '" r="4" fill="' + se.c + '" stroke="var(--card)" stroke-width="2"/>'; });
+    cats.forEach(function (c, i) {
+      var x0 = i === 0 ? L : X(i) - step / 2, x1 = i === n - 1 ? W - R : X(i) + step / 2;
+      s += '<rect class="hit" x="' + r1(x0) + '" y="' + T + '" width="' + r1(x1 - x0) + '" height="' + r1(F.ph) + '" tabindex="0" data-hl="' + id + '-g' + i + '" data-tip="' + tip(c.t || c.l, series.map(function (se) { return { c: se.c, v: money(se.vals[i] || 0), k: se.name }; })) + '"/>';
+    });
+    return legend(series.map(function (se) { return { c: se.c, l: se.name, v: cmoney(se.vals[n - 1] || 0), line: true }; })) +
+      '<svg class="chart" viewBox="0 0 ' + W + ' ' + H + '" role="img">' + s + '</svg>';
+  }
+  function legend(items) {
+    return '<div class="legend">' + items.map(function (x) { return '<span><i class="sw' + (x.line ? ' ln' : '') + '" style="background:' + x.c + '"></i>' + esc(x.l) + (x.v ? ' <b class="v">' + esc(x.v) + '</b>' : '') + '</span>'; }).join('') + '</div>';
+  }
+  /* Donut: qism va butun (3 tagacha bo'lak) */
+  function donut(segs, o) {
+    o = o || {};
+    var r = 52, C = 2 * Math.PI * r, live = segs.filter(function (g) { return g.v > 0; }), tot = sum(live, function (g) { return g.v; });
+    var s = '<svg viewBox="0 0 128 128" role="img"><circle cx="64" cy="64" r="' + r + '" fill="none" stroke="var(--track)" stroke-width="16"/>', off = 0;
+    live.forEach(function (g) {
+      var len = g.v / tot * C, dash = Math.max(len - (live.length > 1 ? 2 : 0), 0.8);
+      s += '<circle class="mk" cx="64" cy="64" r="' + r + '" fill="none" stroke="' + g.c + '" stroke-width="16" stroke-dasharray="' + r1(dash) + ' ' + r1(C - dash) + '" stroke-dashoffset="' + r1(-off) + '" transform="rotate(-90 64 64)" tabindex="0" data-tip="' + tip(g.l, [{ c: g.c, v: money(g.v), k: pct1(g.v / tot) }]) + '"/>';
+      off += len;
+    });
+    s += '<text class="dc-v" x="64" y="66" text-anchor="middle">' + esc(o.center || cmoney(tot)) + '</text><text class="dc-l" x="64" y="82" text-anchor="middle">' + esc(o.label || 'jami') + '</text></svg>';
+    var lg = '<div class="lg">' + segs.map(function (g) {
+      return '<div class="lg-r' + (g.attr ? ' link" ' + g.attr + '>' : '">') + '<i class="sw" style="background:' + g.c + '"></i><span class="k">' + esc(g.l) + '</span><span class="v">' + money(g.v) + '<small>' + (tot && g.v > 0 ? pct1(g.v / tot) : '—') + '</small></span></div>';
+    }).join('') + '</div>';
+    return '<div class="dn">' + s + lg + '</div>';
+  }
+  /* Yig'ma gorizontal chiziq + qatorlar */
+  function splitBar(segs, o) {
+    o = o || {};
+    var live = segs.filter(function (g) { return g.v > 0; }), tot = sum(live, function (g) { return g.v; }) || 1;
+    var bar = '<div class="stk">' + live.map(function (g) {
+      return '<i class="mk" style="flex:' + g.v + ' 1 0;background:' + g.c + '" tabindex="0" data-tip="' + tip(g.l, [{ c: g.c, v: money(g.v), k: pct1(g.v / tot) }]) + '"></i>';
+    }).join('') + '</div>';
+    if (o.bare) return bar;
+    return bar + '<div class="rows">' + segs.map(function (g) {
+      return '<div class="pr' + (g.attr ? ' link" ' + g.attr + '>' : '">') + '<i class="sw" style="background:' + g.c + '"></i><span class="k">' + esc(g.l) + '</span><span class="c">' + money(g.v) + '</span><span class="s">' + (g.v > 0 ? pct1(g.v / tot) : '—') + '</span></div>';
+    }).join('') + '</div>';
+  }
+  /* Mashinalar yo'li: 5 bosqich (tartibli rang) + sotilganlar */
+  function pipeline(cars, o) {
+    o = o || {};
+    var cnt = [0, 0, 0, 0, 0, 0], cost = [0, 0, 0, 0, 0, 0], other = 0, sales = 0;
+    cars.forEach(function (v) { var i = stIdx(v.s); if (i > 5) { other++; return; } cnt[i]++; cost[i] += v.t || 0; if (i === 5) sales += v.p || 0; });
+    var act = cnt.slice(0, 5), atot = sum(act);
+    var bar = atot ? '<div class="stk">' + act.map(function (c, i) {
+      return c ? '<i class="mk" style="flex:' + c + ' 1 0;background:var(--o' + (i + 1) + ')" tabindex="0" data-tip="' + tip(STAGE[i], [{ c: 'var(--o' + (i + 1) + ')', v: c + ' ta', k: money(cost[i]) + ' tannarx' }]) + '"></i>' : '';
+    }).join('') + '</div>' : '';
+    var rows = act.map(function (c, i) {
+      if (o.hideZero && !c) return '';
+      var link = o.link && c ? ' link" data-status="' + esc(STATUSES[i]) + '"' : '"';
+      return '<div class="pr' + link + '><i class="sw" style="background:var(--o' + (i + 1) + ')"></i><span class="k">' + esc(STAGE[i]) + '</span><span class="c">' + c + ' ta</span><span class="s">' + (c ? cmoney(cost[i]) : '—') + '</span></div>';
+    }).join('');
+    rows += '<div class="pr' + (o.link && cnt[5] ? ' link" data-status="Sotilgan"' : '"') + '><span class="ok">' + ic('check', 11, 3) + '</span><span class="k">Sotilgan</span><span class="c">' + cnt[5] + ' ta</span><span class="s">' + (cnt[5] ? cmoney(sales) + ' sotuv' : '—') + '</span></div>';
+    if (other) rows += '<div class="pr"><span class="sw" style="background:var(--bad)"></span><span class="k">Holati noma\'lum</span><span class="c">' + other + ' ta</span><span class="s">—</span></div>';
+    return bar + '<div class="rows">' + rows + '</div>';
+  }
+  /* Gorizontal ustunlar: bitta qator, nomlangan */
+  function hbars(items, o) {
+    o = o || {};
+    if (!items.length) return '<div class="empty">' + esc(o.empty || 'Ma\'lumot yo\'q') + '</div>';
+    var max = Math.max.apply(null, items.map(function (x) { return Math.abs(x.v); }).concat([1]));
+    return '<div class="hb">' + items.map(function (x) {
+      return '<div class="hb-r' + (x.attr ? ' link" ' + x.attr + '>' : '">') + '<div class="hb-t"><span class="k">' + esc(x.l) + '</span><span class="v">' + (o.fmt || money)(x.v) + '</span></div>' +
+        '<div class="hb-b"><i style="width:' + Math.max(1, Math.abs(x.v) / max * 100) + '%;background:' + (x.v < 0 ? 'var(--bad)' : (x.c || o.color || 'var(--s1)')) + '"></i></div>' + (x.s ? '<div class="hb-s">' + x.s + '</div>' : '') + '</div>';
+    }).join('') + '</div>';
+  }
+  function sparkline(vals) {
+    if (vals.length < 2 || !vals.some(function (v) { return v; })) return '';
+    var W = 140, H = 26, mn = Math.min.apply(null, vals.concat([0])), mx = Math.max.apply(null, vals), rg = mx - mn || 1;
+    var P = vals.map(function (v, i) { return [r1(2 + (W - 6) * i / (vals.length - 1)), r1(H - 3 - (v - mn) / rg * (H - 6))]; });
+    var last = P[P.length - 1];
+    return '<svg class="spark" viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true"><polyline points="' + P.map(function (p) { return p.join(','); }).join(' ') + '" fill="none" stroke="var(--axis)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<circle cx="' + last[0] + '" cy="' + last[1] + '" r="3" fill="var(--s1)"/></svg>';
+  }
+  function meter(frac) { return '<div class="meter"><i style="width:' + Math.max(0, Math.min(100, frac * 100)) + '%"></i></div>'; }
+  function table(head, rows) {
+    return '<div class="tblw"><table class="tbl"><tr>' + head.map(function (h) { return '<th>' + esc(h) + '</th>'; }).join('') + '</tr>' +
+      rows.map(function (r) { return '<tr>' + r.map(function (c, i) { return '<td>' + (i ? c : esc(c)) + '</td>'; }).join('') + '</tr>'; }).join('') + '</table></div>';
+  }
+  function card(id, title, sub, body, tbl, extra) {
+    var t = !!(tbl && state.tbl[id]);
+    return '<section class="card cc"><div class="cc-h"><div><h3>' + esc(title) + '</h3>' + (sub ? '<p>' + sub + '</p>' : '') + '</div>' +
+      (tbl ? '<button class="tbtn' + (t ? ' on' : '') + '" data-tbl="' + id + '" aria-label="Jadval ko\'rinishi" title="Jadval">' + ic('table', 16) + '</button>' : '') + '</div>' + (extra || '') + (t ? tbl : body) + '</section>';
+  }
+  function tile(icon, l, v, n, o) {
+    o = o || {};
+    return '<div class="card tile' + (o.wide ? ' wide' : '') + (o.attr ? ' link" ' + o.attr + '>' : '">') + '<div class="tile-h"><span class="tico">' + ic(icon, 16) + '</span><span>' + esc(l) + '</span></div>' +
+      '<div class="v ' + (o.cls || '') + '">' + v + '</div>' + (n ? '<div class="n">' + n + '</div>' : '') + (o.spark || '') + '</div>';
+  }
+  function sec(title, aside) { return '<div class="sec"><h2>' + esc(title) + '</h2>' + (aside ? '<span class="aside">' + aside + '</span>' : '') + '</div>'; }
+
   /* ===== ekranlar ===== */
   function screen(title, text, extra) {
     $('#hero').innerHTML = '';
-    $('#tabs').hidden = true;
+    renderNav(null);
     $('#main').innerHTML = '<div class="center"><h2>' + esc(title) + '</h2><p>' + text + '</p>' + (extra || '') + '</div>';
   }
   function denied(d) {
@@ -264,99 +640,193 @@ main{padding:12px 16px 0}
     else screen('Xatolik', esc(d.message || d.code || 'Noma\'lum xato'), '<p><button class="btn" data-retry>Qayta urinish</button></p>');
   }
 
+  var ADMIN_TABS = [['asosiy', 'Asosiy', 'home'], ['analitika', 'Analitika', 'chart'], ['investorlar', 'Investorlar', 'users'], ['mashinalar', 'Mashinalar', 'truck']];
+  var INV_TABS = [['kabinet', 'Kabinet', 'wallet'], ['tahlil', 'Tahlil', 'chart'], ['mashinalar', 'Mashinalar', 'truck']];
+  function renderNav(tabs, cur, attr) {
+    var nav = $('#nav');
+    nav.hidden = !tabs;
+    document.body.classList.toggle('has-nav', !!tabs);
+    if (!tabs) { nav.innerHTML = ''; return; }
+    nav.innerHTML = tabs.map(function (t) { return '<button class="' + (cur === t[0] ? 'on' : '') + '" ' + attr + '="' + t[0] + '"><span class="ib">' + ic(t[2], 22) + '</span>' + t[1] + '</button>'; }).join('');
+  }
+
   function render() {
+    TIPS = []; CID = 0; hideTip();
     var d = state.data, top = state.stack[state.stack.length - 1];
     $('#back').hidden = !top || inTG;
     if (inTG) { try { if (top) tg.BackButton.show(); else tg.BackButton.hide(); } catch (e) {} }
     document.body.classList.toggle('sub', !!top);
     $('#refresh').hidden = !!top || d.role !== 'admin';
-    $('#tabs').hidden = !!top || d.role !== 'admin';
+    if (top) renderNav(null);
+    else if (d.role === 'admin') renderNav(ADMIN_TABS, state.tab, 'data-tab');
+    else renderNav(INV_TABS, state.itab, 'data-itab');
     if (top && top.t === 'inv') return investorView(top.names, true);
     if (top && top.t === 'vin') return vinView(top.v);
     if (top && top.t === 'cost') return costView(top.v);
     if (top && top.t === 'agg') return aggView(top.sold);
     if (d.role === 'investor') return investorView(d.names, false);
-    renderTabs();
-    if (state.tab === 'investorlar') adminInvestors();
+    if (state.tab === 'analitika') adminAnalytics();
+    else if (state.tab === 'investorlar') adminInvestors();
     else if (state.tab === 'mashinalar') adminVins();
     else adminHome();
   }
   function push(v) { state.open = -1; state.stack.push(v); render(); window.scrollTo(0, 0); }
   function pop() { if (!state.stack.length) return; state.open = -1; state.stack.pop(); render(); }
 
-  function renderTabs() {
-    var T = [['umumiy', 'Umumiy'], ['investorlar', 'Investorlar'], ['mashinalar', 'Mashinalar']];
-    $('#tabs').innerHTML = T.map(function (t) { return '<button class="tab' + (state.tab === t[0] ? ' on' : '') + '" data-tab="' + t[0] + '">' + t[1] + '</button>'; }).join('');
-  }
   function header(title, sub) { $('#title').textContent = title; $('#sub').textContent = sub; }
+  function hero(l, v, chips, small) {
+    $('#hero').innerHTML = '<div class="lbl">' + esc(l) + '</div><div class="big' + (small ? ' sm' : '') + '">' + v + '</div>' +
+      (chips && chips.length ? '<div class="hchips">' + chips.map(function (c) { return '<span>' + c + '</span>'; }).join('') + '</div>' : '');
+  }
   function foot() { return '<div class="foot">Ma\'lumot: ' + esc(state.data.generatedAt) + '</div>'; }
 
-  /* --- admin: umumiy --- */
+  /* --- admin: asosiy --- */
   function K(label) {
     var r = (state.data.kpi || []).filter(function (x) { return same(x.l, label); })[0];
     return r ? r.v : 0;
   }
   function adminHome() {
-    var d = state.data;
-    header('Izaz · Admin', (d.user && d.user.name) || 'Boshqaruv');
-    $('#hero').innerHTML = '<div class="lbl">Jami investitsiya</div><div class="big num">' + money(K('Jami investitsiya')) + '</div>' +
-      '<div class="sub num">Zakazda ' + money(K('Zakazdagi pul: investorlar') + K('Zakazdagi pul: egasi')) + ' · Bo\'sh ' + money(K("Investorlarning bo'sh qoldig'i")) + '</div>';
-    var foyda = K('Foyda'), fi = K('Investorlar ulushi'), fo = K('Egasining ulushi'), fz = K('Izaz ulushi');
+    var d = state.data, ms = d.months || [];
+    header('Izaz', (d.user && d.user.name) || 'Boshqaruv paneli');
+    hero('Jami investitsiya', money(K('Jami investitsiya')), [esc(K('Investorlar soni')) + ' investor', esc(K('Jami mashinalar')) + ' mashina', esc(K('Sotilgan')) + ' sotilgan']);
+    var sotuv = K('Sotuv'), foyda = K('Foyda'), zi = K('Zakazdagi pul: investorlar'), zo = K('Zakazdagi pul: egasi'), bo = K("Investorlarning bo'sh qoldig'i");
+    var spark = function (k) { return sparkline(ms.map(function (m) { return m[k] || 0; })); };
     var h = '<div class="grid">' +
-      kpiCard('Sotuv', money(K('Sotuv')), K('Sotilgan') + ' ta mashina') +
-      kpiCard('Foyda', money(foyda), 'Sotuv − tannarx', 'pos') +
-      kpiCard('Zakazdagi pul: investorlar', money(K('Zakazdagi pul: investorlar'))) +
-      kpiCard('Zakazdagi pul: egasi', money(K('Zakazdagi pul: egasi'))) +
-      kpiCard('To\'langan dividend', money(K("To'langan dividend"))) +
-      kpiCard('To\'lanishi kerak', money(K("To'lanishi kerak dividend")), 'Investorlar dividendi', K("To'lanishi kerak dividend") > 0 ? 'neg' : '') +
-      kpiCard('Yo\'ldagi va skladdagi mashinalar', money(K("Yo'ldagi va skladdagi mashinalar tannarxi")), 'Tannarx, moddalar bo\'yicha', '', false, 'data-agg="0"') +
-      kpiCard('Sotilgan mashinalar tannarxi', money(K('Sotilgan mashinalar tannarxi')), K('Sotilgan') + ' ta mashina', '', false, 'data-agg="1"') +
-      '</div>';
-    var tot = Math.max(fi + fo + fz, 1);
-    h += '<div class="sec">Foyda taqsimoti</div><div class="card"><div class="split"><i style="width:' + (fi / tot * 100) + '%;background:var(--blue)"></i><i style="width:' + (fo / tot * 100) + '%;background:var(--teal)"></i><i style="width:' + (fz / tot * 100) + '%;background:var(--accent)"></i></div>' +
-      '<div class="legend"><span><b style="background:var(--blue)"></b>Investorlar ' + money(fi) + '</span><span><b style="background:var(--teal)"></b>Egasi ' + money(fo) + '</span><span><b style="background:var(--accent)"></b>Izaz ' + money(fz) + '</span></div></div>';
-    var all = K('Jami mashinalar') || 1;
-    h += '<div class="sec">Mashinalar: ' + K('Jami mashinalar') + ' ta</div><div class="list">' + STATUSES.map(function (s) {
-      var c = K(s);
-      return '<div class="row" data-status="' + esc(s) + '"><div class="main"><div class="ttl">' + esc(s) + '</div><div class="bar"><i style="width:' + (c / all * 100) + '%"></i></div></div><div class="end"><div class="v num">' + c + '</div></div></div>';
-    }).join('') + '</div>';
-    var months = (d.months || []).slice().reverse();
-    var maxS = Math.max.apply(null, months.map(function (m) { return m.s; }).concat([1]));
-    h += '<div class="sec">Oylar bo\'yicha</div><div class="card" style="padding:4px 10px"><table class="tbl num"><tr><th>Oy</th><th>Sotuv</th><th>Foyda</th><th>Investitsiya</th></tr>' +
-      months.map(function (m) {
-        return '<tr><td>' + ym(m.ym) + (m.c ? ' <span style="color:var(--muted)">· ' + m.c + '</span>' : '') + '<div class="bar" style="height:4px"><i style="width:' + (m.s / maxS * 100) + '%"></i></div></td><td>' + (m.s ? money(m.s) : '—') + '</td><td class="' + (m.f > 0 ? 'pos' : '') + '">' + (m.f ? money(m.f) : '—') + '</td><td>' + (m.i ? money(m.i) : '—') + '</td></tr>';
-      }).join('') + '</table></div>';
+      tile('trend', 'Sotuv', money(sotuv), K('Sotilgan') + ' ta mashina', { spark: spark('s') }) +
+      tile('coins', 'Foyda', money(foyda), 'marja ' + (sotuv ? pct1(foyda / sotuv) : '—'), { spark: spark('f') }) +
+      tile('box', 'Zakazdagi pul', money(zi + zo), 'investorlar va egasi') +
+      tile('wallet', 'Bo\'sh qoldiq', money(bo), 'investorlar hisobida', { cls: bo < 0 ? 'neg' : '' }) + '</div>';
+    var due = K("To'lanishi kerak dividend"), paid = K("To'langan dividend");
+    h += '<div class="card banner" style="margin-top:10px"><span class="tico">' + ic('gift', 16) + '</span><div class="main"><div class="l">To\'lanishi kerak dividend</div><div class="v">' + money(due) + '</div></div><div class="end" style="text-align:right"><div class="l" style="font-size:12px;color:var(--muted)">To\'langan</div><div style="font-weight:700">' + money(paid) + '</div></div></div>';
+
+    h += sec('Pul qayerda', esc(cmoney(zi + zo + Math.max(bo, 0))) + ' kapital');
+    var cap = [{ l: 'Zakazda: investorlar', v: zi, c: 'var(--s1)' }, { l: 'Zakazda: egasi', v: zo, c: 'var(--s2)' }, { l: 'Bo\'sh qoldiq', v: Math.max(bo, 0), c: 'var(--s3)', n: 'investorlarda' }];
+    h += card('cap', 'Kapital taqsimoti', 'Sotilmagan mashinalardagi pul va bo\'sh qoldiq', donut(cap, { label: 'kapital' }),
+      table(['Qism', 'Summa', 'Ulush'], cap.map(function (g) { return [g.l, money(g.v), pct1(g.v / (zi + zo + Math.max(bo, 0) || 1))]; })));
+
+    h += sec('Mashinalar', K('Jami mashinalar') + ' ta');
+    h += card('pipe', 'Mashinalar yo\'li', 'Soni va tannarxi · bosqichni bosing', pipeline(d.vins, { link: true }));
+
+    h += sec('Foyda', esc(money(foyda)));
+    var fi = K('Investorlar ulushi'), fo = K('Egasining ulushi'), fz = K('Izaz ulushi');
+    var fs = [{ l: 'Investorlar', v: fi, c: 'var(--s1)' }, { l: 'Egasi', v: fo, c: 'var(--s2)' }, { l: 'Izaz', v: fz, c: 'var(--s3)' }];
+    h += card('split', 'Foyda taqsimoti', 'Sotilgan ' + K('Sotilgan') + ' ta mashina foydasi', donut(fs, { label: 'foyda' }),
+      table(['Kimga', 'Summa', 'Ulush'], fs.map(function (g) { return [g.l, money(g.v), pct1(g.v / (fi + fo + fz || 1))]; })));
+    h += '<div class="grid" style="margin-top:10px">' +
+      tile('layers', 'Faol mashinalar', money(K("Yo'ldagi va skladdagi mashinalar tannarxi")), (K('Jami mashinalar') - K('Sotilgan')) + ' ta · tannarx', { attr: 'data-agg="0"' }) +
+      tile('receipt', 'Sotilganlar', money(K('Sotilgan mashinalar tannarxi')), K('Sotilgan') + ' ta · tannarx', { attr: 'data-agg="1"' }) + '</div>';
     var bad = (d.kpi || []).filter(function (x) { return /sana formatida emas/i.test(x.l || '') && x.v > 0; });
-    bad.forEach(function (x) { h += '<div class="warn">' + esc(x.l) + ': ' + x.v + ' ta. ' + esc(x.n || '') + '</div>'; });
-    if (Math.abs(K('Tekshiruv: foyda − ulushlar')) > 1) h += '<div class="warn">Foyda taqsimotida farq bor: ' + money(K('Tekshiruv: foyda − ulushlar')) + '</div>';
+    bad.forEach(function (x) { h += '<div class="warn">' + ic('alert', 18) + '<div>' + esc(x.l) + ': ' + x.v + ' ta. ' + esc(x.n || '') + '</div></div>'; });
+    if (Math.abs(K('Tekshiruv: foyda − ulushlar')) > 1) h += '<div class="warn">' + ic('alert', 18) + '<div>Foyda taqsimotida farq bor: ' + money(K('Tekshiruv: foyda − ulushlar')) + '</div></div>';
+    $('#main').innerHTML = h + foot();
+  }
+
+  /* --- admin: analitika --- */
+  var PERIODS = [['all', 'Hammasi'], ['6', '6 oy'], ['3', '3 oy'], ['1', 'Shu oy']];
+  function adminAnalytics() {
+    var d = state.data, all = d.months || [];
+    var n = state.period === 'all' ? all.length : +state.period, ms = all.slice(Math.max(0, all.length - n));
+    var inP = {}; ms.forEach(function (m) { inP[m.ym] = 1; });
+    var scoped = state.period !== 'all';
+    var sold = d.vins.filter(function (v) { return v.s === 'Sotilgan' && (!scoped || inP[ymOf(v.sd)]); });
+    var S = sum(ms, function (m) { return m.s; }), F = sum(ms, function (m) { return m.f; }), I = sum(ms, function (m) { return m.i; }), C = sum(ms, function (m) { return m.c; });
+    var cyc = sold.map(function (v) { return days(v.d, v.sd); }).filter(function (x) { return x != null && x >= 0; });
+    var pname = !ms.length ? 'Ma\'lumot yo\'q' : state.period === 'all' ? 'Butun davr' : (ms.length === 1 ? ymFull(ms[0].ym) : ymFull(ms[0].ym) + ' – ' + ymFull(ms[ms.length - 1].ym));
+    header('Analitika', pname);
+    hero('Foyda', money(F), [esc(cmoney(S)) + ' sotuv', C + ' ta sotildi', 'marja ' + (S ? pct1(F / S) : '—')]);
+    var h = '<div class="chips">' + PERIODS.map(function (p) { return '<button class="chip' + (state.period === p[0] ? ' on' : '') + '" data-period="' + p[0] + '">' + p[1] + '</button>'; }).join('') + '</div>';
+    h += '<div class="grid">' +
+      tile('percent', 'Marja', S ? pct1(F / S) : '—', 'foyda ÷ sotuv') +
+      tile('coins', 'O\'rtacha foyda', C ? money(F / C) : '—', 'bitta mashinadan') +
+      tile('clock', 'Aylanish', cyc.length ? Math.round(sum(cyc) / cyc.length) + ' kun' : '—', 'xariddan sotuvgacha') +
+      tile('wallet', 'Yangi investitsiya', money(I), ms.length + ' oyda') + '</div>';
+
+    // 1. Oylik dinamika
+    var M = [['s', 'Sotuv'], ['f', 'Foyda'], ['c', 'Soni']], mk = state.metric, mname = { s: 'Sotuv', f: 'Foyda', c: 'Sotilgan mashinalar' }[mk];
+    var pts = ms.map(function (m) { return { l: ymL(m.ym), t: ymFull(m.ym), v: m[mk] || 0 }; });
+    var segc = '<div class="seg">' + M.map(function (x) { return '<button class="' + (mk === x[0] ? 'on' : '') + '" data-metric="' + x[0] + '">' + x[1] + '</button>'; }).join('') + '</div>';
+    h += sec('Oylar bo\'yicha');
+    h += card('mon', mname, mk === 'c' ? 'Har oy sotilgan mashinalar soni' : 'Har oy, USD', colChart(pts, mk === 'c' ? { name: 'ta', fmt: function (v) { return v + ' ta'; }, vfmt: function (v) { return String(v); }, tick: function (v) { return String(v); } } : { name: mname }),
+      table(['Oy', 'Soni', 'Sotuv', 'Foyda', 'Marja'], ms.slice().reverse().map(function (m) { return [ymS(m.ym), String(m.c || 0), m.s ? money(m.s) : '—', m.f ? money(m.f) : '—', m.s ? pct1(m.f / m.s) : '—']; })), segc);
+
+    // 2. Pul oqimi
+    var cats = ms.map(function (m) { return { l: ymL(m.ym), t: ymFull(m.ym) }; });
+    h += card('flow', 'Pul oqimi', 'Kiritilgan investitsiya va to\'langan dividend', groupChart(cats, [
+      { name: 'Investitsiya', c: 'var(--s1)', vals: ms.map(function (m) { return m.i || 0; }) },
+      { name: 'Dividend', c: 'var(--s2)', vals: ms.map(function (m) { return m.d || 0; }) }], { legendV: function (se) { return cmoney(sum(se.vals)); } }),
+      table(['Oy', 'Investitsiya', 'Dividend'], ms.slice().reverse().map(function (m) { return [ymS(m.ym), m.i ? money(m.i) : '—', m.d ? money(m.d) : '—']; })));
+
+    // 3. Kapital o'sishi (kumulyativ, butun davr bo'yicha hisoblanadi)
+    var ci = 0, cf = 0, CI = [], CF = [];
+    all.forEach(function (m) { ci += m.i || 0; cf += m.f || 0; if (inP[m.ym]) { CI.push(ci); CF.push(cf); } });
+    h += card('cum', 'Jamg\'arma', 'Oy oxiriga jami investitsiya va jami foyda', lineChart(cats, [{ name: 'Investitsiya', c: 'var(--s1)', vals: CI }, { name: 'Foyda', c: 'var(--s2)', vals: CF }]),
+      table(['Oy', 'Investitsiya', 'Foyda'], ms.map(function (m, i) { return [ymS(m.ym), money(CI[i]), money(CF[i])]; }).reverse()));
+
+    // 4. Aylanish vaqti
+    var BINS = [[0, 30, '≤30'], [31, 60, '31–60'], [61, 90, '61–90'], [91, 120, '91–120'], [121, 1e9, '120+']];
+    var hist = BINS.map(function (b) { return { l: b[2], t: b[2] + ' kun', v: cyc.filter(function (x) { return x >= b[0] && x <= b[1]; }).length }; });
+    h += sec('Sotuvlar');
+    h += card('cyc', 'Aylanish vaqti', 'Xariddan sotuvgacha necha kun ketgan, mashinalar soni', colChart(hist, { name: 'mashina', fmt: function (v) { return v + ' ta'; }, vfmt: String, tick: String, empty: 'Bu davrda sotuv yo\'q' }),
+      table(['Kun', 'Mashinalar'], hist.map(function (x) { return [x.t, x.v + ' ta']; })));
+
+    // 5. Mahsulotlar
+    var byM = {};
+    sold.forEach(function (v) { var k = v.m || '—'; byM[k] = byM[k] || { l: k, n: 0, f: 0, s: 0 }; byM[k].n++; byM[k].f += v.f || 0; byM[k].s += v.p || 0; });
+    var models = Object.keys(byM).map(function (k) { return byM[k]; }).sort(function (a, b) { return b.f - a.f; });
+    var top = models.slice(0, 6), rest = models.slice(6);
+    if (rest.length) top.push({ l: 'Boshqa (' + rest.length + ' tur)', n: sum(rest, function (x) { return x.n; }), f: sum(rest, function (x) { return x.f; }), s: sum(rest, function (x) { return x.s; }) });
+    h += card('mod', 'Mahsulotlar bo\'yicha foyda', 'Sotilgan mashinalar, foyda bo\'yicha', hbars(top.map(function (x) { return { l: x.l, v: x.f, s: x.n + ' ta · o\'rtacha ' + esc(money(x.f / x.n)) + ' · marja ' + (x.s ? pct1(x.f / x.s) : '—') }; }), { empty: 'Bu davrda sotuv yo\'q' }),
+      table(['Mahsulot', 'Soni', 'Foyda', 'Marja'], top.map(function (x) { return [x.l, String(x.n), money(x.f), x.s ? pct1(x.f / x.s) : '—']; })));
+
+    // 6. Eng foydali mashinalar
+    var best = sold.slice().sort(function (a, b) { return (b.f || 0) - (a.f || 0); }).slice(0, 5);
+    h += card('best', 'Eng foydali 5 mashina', 'Bosing: mashina kartochkasi', hbars(best.map(function (v) { return { l: v.m || v.v, v: v.f || 0, s: '<span class="mono">' + esc(v.v.slice(-6)) + '</span> · ' + esc(v.sd) + ' · marja ' + (v.p ? pct1(v.f / v.p) : '—'), attr: 'data-vin="' + esc(v.v) + '"' }; }), { empty: 'Bu davrda sotuv yo\'q' }));
+
+    // 7. Tannarx tuzilmasi
+    var head = d.costHead || [], it = head.map(function (nm, i) { return { n: nm, v: sum(sold, function (v) { return (v.c || [])[i] || 0; }) }; }).filter(function (x) { return x.v; });
+    var tot = sum(it, function (x) { return x.v; }) || 1;
+    var groups = [0, 0, 0]; it.forEach(function (x) { groups[costGroup(x.n)] += x.v; });
+    it.sort(function (a, b) { return b.v - a.v; });
+    var itTop = it.slice(0, 6), itRest = it.slice(6);
+    if (itRest.length) itTop.push({ n: 'Boshqa ' + itRest.length + ' ta modda', v: sum(itRest, function (x) { return x.v; }), g: itRest.every(function (x) { return costGroup(x.n) === costGroup(itRest[0].n); }) ? costGroup(itRest[0].n) : -1 });
+    h += sec('Xarajatlar');
+    h += card('cost', 'Tannarx tarkibi', 'Sotilgan ' + sold.length + ' ta mashina, ' + esc(money(tot)), it.length ? splitBar(CG.map(function (l, i) { return { l: l, v: groups[i], c: 'var(--s' + (i + 1) + ')' }; })) +
+      '<div style="margin-top:14px">' + hbars(itTop.map(function (x) { var g = x.g != null ? x.g : costGroup(x.n); return { l: costLabel(x.n), v: x.v, c: g < 0 ? 'var(--axis)' : 'var(--s' + (g + 1) + ')', s: pct1(x.v / tot) + ' · mashinaga o\'rtacha ' + esc(money(x.v / Math.max(sold.length, 1))) }; })) + '</div>' : '<div class="empty">Bu davrda sotuv yo\'q</div>',
+      table(['Modda', 'Summa', 'Ulush'], it.map(function (x) { return [costLabel(x.n), money(x.v), pct1(x.v / tot)]; })));
     $('#main').innerHTML = h + foot();
   }
 
   /* --- admin: investorlar --- */
   function adminInvestors() {
     var d = state.data;
-    header('Izaz · Admin', d.investors.length + ' ta investor');
-    var sum = function (k) { return d.investors.reduce(function (a, x) { return a + (x[k] || 0); }, 0); };
-    $('#hero').innerHTML = '<div class="lbl">Investorlarning bo\'sh qoldig\'i</div><div class="big num">' + money(sum('q')) + '</div><div class="sub num">Foyda ' + money(sum('f')) + ' · To\'lanmagan dividend ' + money(sum('qz')) + '</div>';
+    header('Investorlar', d.investors.length + ' ta investor');
+    var sm = function (k) { return sum(d.investors, function (x) { return x[k] || 0; }); };
+    hero('Investorlar puli', money(sm('inv') + sm('f') - sm('dv')), ['zakazda ' + esc(cmoney(sm('z'))), 'bo\'sh ' + esc(cmoney(sm('q'))), 'qarz ' + esc(cmoney(sm('qz')))]);
+    var h = card('isplit', 'Investorlar kapitali', 'Investitsiya + foyda − dividend', splitBar([{ l: 'Zakazda', v: sm('z'), c: 'var(--s1)' }, { l: 'Bo\'sh qoldiq', v: Math.max(sm('q'), 0), c: 'var(--s3)' }]));
     var S = [['inv', 'Investitsiya'], ['q', 'Bo\'sh qoldiq'], ['f', 'Foyda'], ['qz', 'Qarz'], ['n', 'Nomi']];
     var q = state.iq.toLowerCase();
     var list = d.investors.filter(function (x) { return !q || x.n.toLowerCase().indexOf(q) >= 0; });
     list.sort(function (a, b) { return state.sort === 'n' ? a.n.localeCompare(b.n) : (b[state.sort] || 0) - (a[state.sort] || 0); });
-    var h = '<input class="search" id="iq" placeholder="Investor qidirish" value="' + esc(state.iq) + '">' +
+    var maxC = Math.max.apply(null, d.investors.map(function (x) { return (x.z || 0) + Math.max(x.q || 0, 0); }).concat([1]));
+    h += sec('Ro\'yxat', list.length + ' ta');
+    h += '<label class="search">' + ic('search', 18) + '<input id="iq" placeholder="Investor qidirish" value="' + esc(state.iq) + '"></label>' +
       '<div class="chips">' + S.map(function (s) { return '<button class="chip' + (state.sort === s[0] ? ' on' : '') + '" data-sort="' + s[0] + '">' + s[1] + '</button>'; }).join('') + '</div>';
     h += '<div class="list">' + (list.length ? list.map(function (x) {
       var v = state.sort === 'n' ? x.inv : x[state.sort];
       var lbl = { inv: 'investitsiya', q: 'bo\'sh qoldiq', f: 'foyda', qz: 'qarz', n: 'investitsiya' }[state.sort];
-      return '<div class="row" data-inv="' + esc(x.n) + '"><div class="main"><div class="ttl">' + esc(x.n) + '</div><div class="meta num">' + x.fa + ' faol · ' + x.so + ' sotilgan · ulush ' + pct(x.u) + (x.tg ? ' · TG ✓' : ' · <span class="neg">TG yo\'q</span>') + '</div></div>' +
-        '<div class="end"><div class="v num">' + money(v) + '</div><div class="s">' + lbl + '</div></div></div>';
+      var z = x.z || 0, b = Math.max(x.q || 0, 0), w = (z + b) / maxC * 100;
+      return '<div class="row" data-inv="' + esc(x.n) + '"><div class="av">' + esc(initials(x.n)) + '</div><div class="main"><div class="ttl">' + esc(x.n) + '</div><div class="meta">' + x.fa + ' faol · ' + x.so + ' sotilgan · ulush ' + pct(x.u) + (x.tg ? '' : ' · <span class="neg">TG yo\'q</span>') + '</div>' +
+        '<div class="mini" style="width:' + Math.max(w, 2) + '%">' + (z ? '<i style="flex:' + z + ' 1 0;background:var(--s1)"></i>' : '') + (b ? '<i style="flex:' + b + ' 1 0;background:var(--s3)"></i>' : '') + '</div></div>' +
+        '<div class="end"><div class="v">' + money(v) + '</div><div class="s">' + lbl + '</div></div></div>';
     }).join('') : '<div class="row static"><div class="main meta">Topilmadi</div></div>') + '</div>';
+    h += '<div class="legend" style="margin:10px 4px 0"><span><i class="sw" style="background:var(--s1)"></i>zakazda</span><span><i class="sw" style="background:var(--s3)"></i>bo\'sh qoldiq</span></div>';
     $('#main').innerHTML = h + foot();
   }
 
   /* --- admin: mashinalar --- */
   function adminVins() {
     var d = state.data;
-    header('Izaz · Admin', d.vins.length + ' ta mashina');
+    header('Mashinalar', d.vins.length + ' ta VIN');
     var counts = {};
     d.vins.forEach(function (v) { counts[v.s] = (counts[v.s] || 0) + 1; });
     var q = state.q.toUpperCase();
@@ -365,9 +835,12 @@ main{padding:12px 16px 0}
       if (!q) return true;
       return (v.v + ' ' + v.m + ' ' + v.i.join(' ')).toUpperCase().indexOf(q) >= 0;
     });
-    var bron = list.reduce(function (a, v) { return a + (v.b || 0); }, 0);
-    $('#hero').innerHTML = '<div class="lbl">' + esc(state.filter || 'Barcha mashinalar') + '</div><div class="big num">' + list.length + ' ta</div><div class="sub num">Bron jami ' + money(bron) + '</div>';
-    var h = '<input class="search" id="q" placeholder="VIN, model yoki investor" value="' + esc(state.q) + '">' +
+    var bron = sum(list, function (v) { return v.b || 0; });
+    hero(state.filter || 'Barcha mashinalar', list.length + ' ta', ['bron ' + esc(cmoney(bron)), 'tannarx ' + esc(cmoney(sum(list, function (v) { return v.t || 0; })))]);
+    var act = [0, 1, 2, 3, 4].map(function (i) { return counts[STATUSES[i]] || 0; });
+    var h = '<div class="card" style="padding:14px">' + splitBar(act.map(function (c, i) { return { l: STATUSES[i], v: c, c: 'var(--o' + (i + 1) + ')' }; }), { bare: true }) +
+      '<div class="legend" style="margin:10px 0 0">' + act.map(function (c, i) { return c ? '<span><i class="sw" style="background:var(--o' + (i + 1) + ')"></i>' + esc(SHORT[i]) + ' <b class="v">' + c + '</b></span>' : ''; }).join('') + '<span><span class="pill done" style="padding:1px 6px">' + ic('check', 11, 3) + '</span>Sotildi <b class="v">' + (counts.Sotilgan || 0) + '</b></span></div></div>';
+    h += '<div style="height:12px"></div><label class="search">' + ic('search', 18) + '<input id="q" placeholder="VIN, model yoki investor" value="' + esc(state.q) + '"></label>' +
       '<div class="chips"><button class="chip' + (!state.filter ? ' on' : '') + '" data-filter="">Hammasi ' + d.vins.length + '</button>' +
       STATUSES.filter(function (s) { return counts[s]; }).map(function (s) { return '<button class="chip' + (state.filter === s ? ' on' : '') + '" data-filter="' + esc(s) + '">' + esc(SHORT[stIdx(s)]) + ' ' + counts[s] + '</button>'; }).join('') + '</div>';
     h += '<div class="list">' + (list.length ? list.map(vinRow).join('') : '<div class="row static"><div class="main meta">Topilmadi</div></div>') + '</div>';
@@ -376,13 +849,14 @@ main{padding:12px 16px 0}
   function vinRow(v) {
     var pc = (state.data.photoCounts || {})[v.v];
     var names = v.my ? v.my.map(function (x) { return x.n; }) : v.i.filter(String);
-    var endV = v.my ? money(v.my.reduce(function (a, x) { return a + (x.f || 0); }, 0)) : money(v.s === 'Sotilgan' ? v.f : v.b);
+    var endV = v.my ? money(sum(v.my, function (x) { return x.f || 0; })) : money(v.s === 'Sotilgan' ? v.f : v.b);
     var endS = v.my ? 'foydangiz' : (v.s === 'Sotilgan' ? 'foyda' : 'bron');
-    if (v.my && v.s !== 'Sotilgan') { endV = money(v.my.reduce(function (a, x) { return a + (x.b || 0); }, 0)); endS = 'ulushingiz'; }
-    return '<div class="row" data-vin="' + esc(v.v) + '"><div class="main"><div class="ttl">' + esc(v.m || v.v) + '</div>' +
+    if (v.my && v.s !== 'Sotilgan') { endV = money(sum(v.my, function (x) { return x.b || 0; })); endS = 'ulushingiz'; }
+    var si = stIdx(v.s);
+    return '<div class="row" data-vin="' + esc(v.v) + '"><div class="av ' + (si === 5 ? 'out' : 'in') + '">' + ic('truck', 20) + '</div><div class="main"><div class="ttl">' + esc(v.m || v.v) + '</div>' +
       '<div class="meta"><span class="mono">' + esc(v.v.slice(-6)) + '</span> · ' + pill(v.s) + (pc ? ' · ' + pc + ' rasm' : '') + '</div>' +
       (state.data.role === 'admin' && !v.my ? '<div class="meta">' + esc(names.join(', ')) + '</div>' : '') + '</div>' +
-      '<div class="end"><div class="v num">' + endV + '</div><div class="s">' + endS + '</div></div></div>';
+      '<div class="end"><div class="v ' + (v.s === 'Sotilgan' && (v.my ? sum(v.my, function (x) { return x.f || 0; }) : v.f) > 0 ? 'pos' : '') + '">' + endV + '</div><div class="s">' + endS + '</div></div></div>';
   }
 
   /* --- investor kabineti (investor o'zi yoki admin ko'rinishi) --- */
@@ -396,89 +870,133 @@ main{padding:12px 16px 0}
       var o = {}; for (var key in v) o[key] = v[key]; o.my = my; return o;
     });
   }
+  function myF(v) { return sum(v.my || [], function (x) { return x.f || 0; }); }
   function investorView(names, asAdmin) {
     var d = state.data;
     var has = function (n) { return names.some(function (x) { return same(x, n); }); };
     var acc = d.investors.filter(function (x) { return has(x.n); });
-    var s = function (k) { return acc.reduce(function (a, x) { return a + (x[k] || 0); }, 0); };
+    var s = function (k) { return sum(acc, function (x) { return x[k] || 0; }); };
     var vins = myVins(names);
     var kassa = (d.kassa || []).filter(function (x) { return has(x.n); });
     header(asAdmin ? names.join(', ') : 'Izaz · Kabinet', asAdmin ? 'Investor kabineti' : ((d.user && d.user.name) || names.join(', ')));
-    $('#hero').innerHTML = '<div class="lbl">Kiritilgan pul</div><div class="big num">' + money(s('inv')) + '</div>' +
-      '<div class="sub num">Foyda ulushi ' + (acc.length === 1 ? pct(acc[0].u) : acc.map(function (x) { return pct(x.u); }).join(' / ')) + ' · ' + vins.length + ' ta mashina</div>';
-    var h = '<div class="grid">' +
-      kpiCard('Zakazdagi pul', money(s('z')), 'Mashinalarda ishlayapti') +
-      kpiCard('Bo\'sh qoldiq', money(s('q')), 'Investitsiya + foyda − dividend − zakaz', s('q') < 0 ? 'neg' : '') +
-      kpiCard('Foyda', money(s('f')), s('so') + ' ta sotilgan mashinadan', 'pos') +
-      kpiCard('To\'langan dividend', money(s('dv'))) +
-      kpiCard('To\'lanmagan dividend', money(s('qz')), '', s('qz') > 0 ? 'pos' : '', true) +
-      '</div>';
-    if (acc.length > 1) {
-      h += '<div class="sec">Hisoblar</div><div class="list">' + acc.map(function (x) {
-        return '<div class="row static"><div class="main"><div class="ttl">' + esc(x.n) + '</div><div class="meta num">Investitsiya ' + money(x.inv) + ' · zakazda ' + money(x.z) + ' · ulush ' + pct(x.u) + '</div></div><div class="end"><div class="v num">' + money(x.q) + '</div><div class="s">bo\'sh</div></div></div>';
-      }).join('') + '</div>';
-    }
-    var active = vins.filter(function (v) { return v.s !== 'Sotilgan'; }), sold = vins.filter(function (v) { return v.s === 'Sotilgan'; });
-    h += '<div class="sec">Faol mashinalar · ' + active.length + '</div><div class="list">' + (active.length ? active.map(vinRow).join('') : '<div class="row static"><div class="main meta">Hozircha yo\'q</div></div>') + '</div>';
-    if (sold.length) h += '<div class="sec">Sotilgan · ' + sold.length + '</div><div class="list">' + sold.map(vinRow).join('') + '</div>';
-    h += '<div class="sec">Pul harakati</div><div class="list">' + (kassa.length ? kassa.map(function (x) {
-      var div = x.t === 'Divident';
-      return '<div class="row static"><div class="main"><div class="ttl">' + (div ? 'Dividend to\'landi' : 'Investitsiya kiritildi') + '</div><div class="meta">' + esc(x.d) + (acc.length > 1 ? ' · ' + esc(x.n) : '') + '</div></div><div class="end"><div class="v num ' + (div ? 'pos' : '') + '">' + money(x.a) + '</div></div></div>';
-    }).join('') : '<div class="row static"><div class="main meta">Yozuv yo\'q</div></div>') + '</div>';
+    var share = acc.length === 1 ? pct(acc[0].u) : acc.map(function (x) { return pct(x.u); }).join(' / ');
+    hero('Kiritilgan pul', money(s('inv')), ['foyda ulushi ' + esc(share), vins.length + ' ta mashina', 'foyda ' + esc(cmoney(s('f')))]);
+    var h = asAdmin ? '<div class="seg">' + INV_TABS.map(function (t) { return '<button class="' + (state.itab === t[0] ? 'on' : '') + '" data-itab="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>' : '';
+    if (state.itab === 'tahlil') h += investorStats(vins, kassa, acc, s);
+    else if (state.itab === 'mashinalar') h += investorCars(vins);
+    else h += investorHome(vins, kassa, acc, s);
     $('#main').innerHTML = h + foot();
+  }
+  function investorHome(vins, kassa, acc, s) {
+    var h = '<div class="grid">' +
+      tile('box', 'Zakazdagi pul', money(s('z')), 'mashinalarda ishlayapti') +
+      tile('wallet', 'Bo\'sh qoldiq', money(s('q')), 'ishlatilmayotgan pul', { cls: s('q') < 0 ? 'neg' : '' }) +
+      tile('coins', 'Foyda', money(s('f')), s('so') + ' ta sotilgan mashinadan', { cls: s('f') > 0 ? 'pos' : '' }) +
+      tile('gift', 'Dividend', money(s('qz')), s('dv') ? 'to\'lanmagan · berilgan ' + esc(cmoney(s('dv'))) : 'hali to\'lanmagan') + '</div>';
+    var z = s('z'), q = s('q'), inv = s('inv'), f = s('f');
+    h += sec('Pulingiz');
+    h += card('alloc', 'Pulingiz qayerda', 'Investitsiya + foyda − dividend = ' + esc(money(z + q)), splitBar([{ l: 'Mashinalarda (zakaz)', v: z, c: 'var(--s1)' }, { l: 'Bo\'sh qoldiq', v: Math.max(q, 0), c: 'var(--s3)' }]));
+    h += '<div class="card" style="margin-top:10px"><div class="mrow"><div><div style="font-size:12.5px;color:var(--muted);font-weight:600">Daromadlilik</div><div class="big2">' + (inv ? pct1(f / inv) : '—') + '</div></div><div class="s" style="text-align:right">' + esc(money(f)) + ' foyda<br>' + esc(money(inv)) + ' kiritilgan</div></div>' + meter(inv ? f / inv / 0.3 : 0) +
+      '<div class="steps-l" style="margin-top:6px"><span>0%</span><span>15%</span><span>30%</span></div></div>';
+    h += sec('Mashinalaringiz', vins.length + ' ta');
+    h += card('ipipe', 'Qayerda turibdi', 'Bosqichlar bo\'yicha', pipeline(vins, { hideZero: true }));
+    h += sec('Pul harakati', kassa.length + ' ta');
+    h += '<div class="list">' + (kassa.length ? kassa.map(function (x) {
+      var div = x.t === 'Divident';
+      return '<div class="row static"><div class="av ' + (div ? 'out' : 'in') + '">' + ic(div ? 'gift' : 'wallet', 19) + '</div><div class="main"><div class="ttl">' + (div ? 'Dividend to\'landi' : 'Investitsiya kiritildi') + '</div><div class="meta">' + esc(x.d) + (acc.length > 1 ? ' · ' + esc(x.n) : '') + '</div></div><div class="end"><div class="v ' + (div ? 'pos' : '') + '">' + (div ? '' : '+') + money(x.a) + '</div></div></div>';
+    }).join('') : '<div class="row static"><div class="main meta">Yozuv yo\'q</div></div>') + '</div>';
+    return h;
+  }
+  function investorStats(vins, kassa, acc, s) {
+    var sold = vins.filter(function (v) { return v.s === 'Sotilgan'; });
+    var first = [], last = ymNow();
+    kassa.forEach(function (x) { var k = ymOf(x.d); if (k) first.push(k); });
+    vins.forEach(function (v) { var k = ymOf(v.d); if (k) first.push(k); var e = ymOf(v.sd); if (e && e > last) last = e; });
+    first.sort();
+    var range = ymRange(first[0] || last, last).slice(-12);
+    var P = {}, I = {}, D = {};
+    sold.forEach(function (v) { var k = ymOf(v.sd); P[k] = (P[k] || 0) + myF(v); });
+    kassa.forEach(function (x) { var k = ymOf(x.d); if (x.t === 'Divident') D[k] = (D[k] || 0) + x.a; else I[k] = (I[k] || 0) + x.a; });
+    var cyc = sold.map(function (v) { return days(v.d, v.sd); }).filter(function (x) { return x != null && x >= 0; });
+    var F = sum(sold, myF);
+    var h = '<div class="grid">' +
+      tile('percent', 'Daromadlilik', s('inv') ? pct1(s('f') / s('inv')) : '—', 'foyda ÷ kiritilgan') +
+      tile('coins', 'O\'rtacha foyda', sold.length ? money(F / sold.length) : '—', 'bitta mashinadan') +
+      tile('clock', 'Aylanish', cyc.length ? Math.round(sum(cyc) / cyc.length) + ' kun' : '—', 'xariddan sotuvgacha') +
+      tile('truck', 'Sotilgan', sold.length + ' ta', (vins.length - sold.length) + ' ta hali faol') + '</div>';
+    var cats = range.map(function (k) { return { l: ymL(k), t: ymFull(k) }; });
+    h += sec('Oylar bo\'yicha');
+    h += card('ifm', 'Oylik foyda', 'Sizning ulushingiz, sotuv oyiga ko\'ra', colChart(range.map(function (k) { return { l: ymL(k), t: ymFull(k), v: P[k] || 0 }; }), { name: 'foyda', empty: 'Hali sotilgan mashina yo\'q' }),
+      table(['Oy', 'Foyda'], range.slice().reverse().map(function (k) { return [ymS(k), P[k] ? money(P[k]) : '—']; })));
+    var ci = 0, cf = 0, CI = [], CF = [];
+    range.forEach(function (k) { ci += I[k] || 0; cf += P[k] || 0; CI.push(ci); CF.push(cf); });
+    h += card('icum', 'Jamg\'arma', 'Oy oxiriga jami kiritilgan pul va jami foyda', lineChart(cats, [{ name: 'Kiritilgan', c: 'var(--s1)', vals: CI }, { name: 'Foyda', c: 'var(--s2)', vals: CF }]),
+      table(['Oy', 'Kiritilgan', 'Foyda', 'Dividend'], range.map(function (k, i) { return [ymS(k), money(CI[i]), money(CF[i]), D[k] ? money(D[k]) : '—']; }).reverse()));
+    var best = sold.slice().sort(function (a, b) { return myF(b) - myF(a); });
+    h += sec('Mashinalar bo\'yicha');
+    h += card('icar', 'Har bir mashina foydasi', 'Sizning ulushingiz. Bosing: kartochka', hbars(best.map(function (v) { return { l: v.m || v.v, v: myF(v), s: '<span class="mono">' + esc(v.v.slice(-6)) + '</span> · ' + esc(v.sd) + (days(v.d, v.sd) != null ? ' · ' + days(v.d, v.sd) + ' kun' : ''), attr: 'data-vin="' + esc(v.v) + '"' }; }), { empty: 'Hali sotilgan mashina yo\'q' }));
+    return h;
+  }
+  function investorCars(vins) {
+    var active = vins.filter(function (v) { return v.s !== 'Sotilgan'; }), sold = vins.filter(function (v) { return v.s === 'Sotilgan'; });
+    var h = sec('Faol', active.length + ' ta') + '<div class="list">' + (active.length ? active.map(vinRow).join('') : '<div class="row static"><div class="main meta">Hozircha yo\'q</div></div>') + '</div>';
+    if (sold.length) h += sec('Sotilgan', sold.length + ' ta') + '<div class="list">' + sold.map(vinRow).join('') + '</div>';
+    return h;
   }
 
   /* --- mashina kartochkasi --- */
   function vinView(vin) {
     var d = state.data;
     var top = state.stack[state.stack.length - 2];
-    var pool = top && top.t === 'inv' ? myVins(top.names) : (d.role === 'admin' ? d.vins : d.vins);
+    var pool = top && top.t === 'inv' ? myVins(top.names) : d.vins;
     var v = pool.filter(function (x) { return x.v === vin; })[0] || d.vins.filter(function (x) { return x.v === vin; })[0];
     if (!v) { pop(); return; }
     header(v.m || 'Mashina', v.v);
     var si = stIdx(v.s);
-    $('#hero').innerHTML = '<div class="lbl">Holati</div><div class="big" style="font-size:24px">' + esc(v.s || '—') + '</div>';
-    var h = '<div class="card"><div class="steps">' + STATUSES.map(function (s, i) { return '<i class="' + (si < 9 && i <= si ? 'on' : '') + '"></i>'; }).join('') + '</div>' +
+    hero('Holati', esc(v.s || '—'), [esc(v.d ? 'xarid ' + v.d : ''), esc(v.sd ? 'sotuv ' + v.sd : '')].filter(String), true);
+    var h = '<div class="card"><div class="steps">' + STATUSES.map(function (s, i) { return '<i style="' + (si < 9 && i <= si ? 'background:' + (i === 5 ? 'var(--good)' : 'var(--o' + (i + 1) + ')') : '') + '"></i>'; }).join('') + '</div>' +
       '<div class="steps-l"><span>Zavod</span><span>Chegara</span><span>Sklad</span><span>Sotuv</span></div></div>';
-    h += '<div class="sec">Ma\'lumot</div><div class="list">' + kv('VIN', '<span class="mono">' + esc(v.v) + '</span>') + kv('Xarid sanasi', esc(v.d || '—')) + kv('Sotuv sanasi', esc(v.sd || '—'));
+    if (v.p) {
+      var segs = [{ l: 'Tannarx', v: v.t, c: 'var(--s2)', attr: 'data-cost="' + esc(v.v) + '"' }, { l: v.f >= 0 ? 'Foyda' : 'Zarar', v: Math.max(v.f, 0), c: 'var(--s1)' }];
+      h += sec('Sotuv narxi', esc(money(v.p)));
+      h += '<div class="card">' + splitBar(segs) + '</div>';
+      if (d.role === 'admin' && v.f) h += '<div class="card" style="margin-top:10px"><div class="cc-h"><div><h3>Foyda taqsimoti</h3></div></div>' + splitBar([{ l: 'Investorlar', v: v.fi, c: 'var(--s1)' }, { l: 'Egasi', v: v.fo, c: 'var(--s2)' }, { l: 'Izaz', v: v.fz, c: 'var(--s3)' }]) + '</div>';
+    }
+    h += sec('Ma\'lumot') + '<div class="list">' + kv('VIN', '<span class="mono">' + esc(v.v) + '</span>') + kv('Xarid sanasi', esc(v.d || '—')) + kv('Sotuv sanasi', esc(v.sd || '—'));
     if (v.my) v.my.forEach(function (x) {
       var named = v.my.length > 1 || d.role === 'admin';
       h += kv(named ? x.n + ': ulush (bron)' : 'Ulushingiz (bron)', money(x.b)) + kv(named ? x.n + ': foyda' : 'Foydangiz', x.f ? money(x.f) : '—', x.f > 0 ? 'pos' : '');
     });
-    if (d.role !== 'admin') {
-      h += kv('Mashina tannarxi', money(v.t), '', 'data-cost="' + esc(v.v) + '"') + kv('Sotuv narxi', v.p ? money(v.p) : '—') + kv('Mashina foydasi', v.f ? money(v.f) : '—', v.f > 0 ? 'pos' : (v.f < 0 ? 'neg' : ''));
-    }
+    if (d.role !== 'admin') h += kv('Mashina tannarxi', money(v.t), '', 'data-cost="' + esc(v.v) + '"') + kv('Sotuv narxi', v.p ? money(v.p) : '—') + kv('Mashina foydasi', v.f ? money(v.f) : '—', v.f > 0 ? 'pos' : (v.f < 0 ? 'neg' : ''));
     if (d.role === 'admin') {
       h += kv('Bron summasi', money(v.b)) + kv('Tannarx', money(v.t), '', 'data-cost="' + esc(v.v) + '"') + kv('Sotuv', v.p ? money(v.p) : '—') + kv('Foyda', v.f ? money(v.f) : '—', v.f > 0 ? 'pos' : (v.f < 0 ? 'neg' : ''));
       if (v.f) h += kv('Investorlar ulushi', money(v.fi)) + kv('Egasi ulushi', money(v.fo)) + kv('Izaz ulushi', money(v.fz));
     }
     h += '</div>';
     if (d.role === 'admin' && !v.my) {
-      h += '<div class="sec">Investorlar</div><div class="list">' + v.i.map(function (n, k) {
+      h += sec('Investorlar') + '<div class="list">' + v.i.map(function (n, k) {
         if (!n) return '';
-        return '<div class="row" data-inv="' + esc(n) + '"><div class="main"><div class="ttl">' + esc(n) + '</div><div class="meta num">Bron ' + money(v.bk[k]) + '</div></div><div class="end"><div class="v num">' + (v.fk[k] ? money(v.fk[k]) : '—') + '</div><div class="s">foyda</div></div></div>';
+        return '<div class="row" data-inv="' + esc(n) + '"><div class="av">' + esc(initials(n)) + '</div><div class="main"><div class="ttl">' + esc(n) + '</div><div class="meta">Bron ' + money(v.bk[k]) + '</div></div><div class="end"><div class="v">' + (v.fk[k] ? money(v.fk[k]) : '—') + '</div><div class="s">foyda</div></div></div>';
       }).join('') + '</div>';
     }
-    h += '<div class="sec">Rasmlar</div><div id="ph" class="card"><div class="spin"></div></div>';
+    h += sec('Rasmlar') + '<div id="ph" class="card"><div class="spin"></div></div>';
     $('#main').innerHTML = h + foot();
     loadPhotos(v.v);
   }
   /* --- xarajatlar --- */
-  function findVin(vin) {
-    var d = state.data;
-    return d.vins.filter(function (x) { return x.v === vin; })[0];
-  }
+  function findVin(vin) { return state.data.vins.filter(function (x) { return x.v === vin; })[0]; }
   function costView(vin) {
     var d = state.data, v = findVin(vin);
     if (!v) { pop(); return; }
     header('Xarajatlar', (v.m || '') + ' · ' + v.v.slice(-6));
     var items = (d.costHead || []).map(function (n, i) { return { n: n, i: i, v: (v.c || [])[i] || 0 }; });
     var used = items.filter(function (x) { return x.v; });
-    var tot = used.reduce(function (a, x) { return a + x.v; }, 0) || 1;
-    $('#hero').innerHTML = '<div class="lbl">Tannarx</div><div class="big num">' + money(v.t) + '</div>' +
-      '<div class="sub num">' + (v.p ? 'Sotuv ' + money(v.p) + ' · foyda ' + money(v.f) : esc(v.s || '')) + '</div>';
+    var tot = sum(used, function (x) { return x.v; }) || 1;
+    var groups = [0, 0, 0]; used.forEach(function (x) { groups[costGroup(x.n)] += x.v; });
+    hero('Tannarx', money(v.t), v.p ? ['sotuv ' + esc(cmoney(v.p)), 'foyda ' + esc(cmoney(v.f))] : [esc(v.s || '')]);
     var ent = state.costs[vin];
-    var h = '<div class="sec">' + used.length + ' ta modda</div><div class="list">' + used.map(function (x) {
+    var h = '<div class="card">' + splitBar(CG.map(function (l, i) { return { l: l, v: groups[i], c: 'var(--s' + (i + 1) + ')' }; })) + '</div>';
+    h += sec(used.length + ' ta modda', 'bosing: yozuvlar') + '<div class="list">' + used.map(function (x) {
       var open = state.open === x.i;
       var body = '';
       if (open) {
@@ -487,12 +1005,12 @@ main{padding:12px 16px 0}
         else {
           var list = ent[x.n] || [];
           body = '<div class="entries">' + (list.length ? list.map(function (e) {
-            return '<div class="ent"><div><div>' + esc(e.t || '—') + '</div><div class="m">' + esc(e.d || '') + '</div></div><div class="a num">' + money(e.a) + (e.o ? '<div class="m">' + esc(e.o) + '</div>' : '') + '</div></div>';
+            return '<div class="ent"><div><div>' + esc(e.t || '—') + '</div><div class="m">' + esc(e.d || '') + '</div></div><div class="a">' + money(e.a) + (e.o ? '<div class="m">' + esc(e.o) + '</div>' : '') + '</div></div>';
           }).join('') : '<div class="ent"><span class="m">Batafsil yozuv topilmadi, summa Hisobot varag\'idan.</span></div>') + '</div>';
         }
       }
-      return '<div class="row' + (open ? ' open' : '') + '" data-item="' + x.i + '"><div class="main"><div class="ttl">' + esc(costLabel(x.n)) + '</div><div class="bar" style="height:4px"><i style="width:' + (x.v / tot * 100) + '%"></i></div></div>' +
-        '<div class="end"><div class="v num">' + money(x.v) + '</div><div class="s">' + Math.round(x.v / tot * 100) + '%</div></div></div>' + body;
+      return '<div class="row' + (open ? ' open' : '') + '" data-item="' + x.i + '"><div class="main"><div class="ttl">' + esc(costLabel(x.n)) + '</div><div class="bar4" style="width:' + Math.max(1, x.v / tot * 100) + '%;background:var(--s' + (costGroup(x.n) + 1) + ')"></div></div>' +
+        '<div class="end"><div class="v">' + money(x.v) + '</div><div class="s">' + pct1(x.v / tot) + '</div></div></div>' + body;
     }).join('') + '</div>';
     var zero = items.length - used.length;
     if (zero) h += '<div class="foot" style="margin-top:10px">Yana ' + zero + ' ta modda bo\'yicha xarajat yo\'q</div>';
@@ -516,22 +1034,24 @@ main{padding:12px 16px 0}
     var d = state.data;
     var cars = d.vins.filter(function (v) { return sold ? v.s === 'Sotilgan' : v.s !== 'Sotilgan'; });
     var items = (d.costHead || []).map(function (n, i) {
-      return { n: n, i: i, v: cars.reduce(function (a, c) { return a + ((c.c || [])[i] || 0); }, 0) };
+      return { n: n, i: i, v: sum(cars, function (c) { return (c.c || [])[i] || 0; }) };
     }).filter(function (x) { return x.v; }).sort(function (a, b) { return b.v - a.v; });
-    var tot = items.reduce(function (a, x) { return a + x.v; }, 0) || 1;
+    var tot = sum(items, function (x) { return x.v; }) || 1;
+    var groups = [0, 0, 0]; items.forEach(function (x) { groups[costGroup(x.n)] += x.v; });
     header(sold ? 'Sotilgan mashinalar' : 'Yo\'ldagi va skladdagi', 'Tannarx moddalari');
-    $('#hero').innerHTML = '<div class="lbl">Jami tannarx</div><div class="big num">' + money(tot) + '</div><div class="sub num">' + cars.length + ' ta mashina</div>';
-    var h = '<div class="list">' + items.map(function (x) {
+    hero('Jami tannarx', money(tot), [cars.length + ' ta mashina', 'o\'rtacha ' + esc(cmoney(tot / Math.max(cars.length, 1)))]);
+    var h = '<div class="card">' + splitBar(CG.map(function (l, i) { return { l: l, v: groups[i], c: 'var(--s' + (i + 1) + ')' }; })) + '</div>';
+    h += sec(items.length + ' ta modda', 'bosing: mashinalar') + '<div class="list">' + items.map(function (x) {
       var open = state.open === x.i;
       var body = '';
       if (open) {
         var list = cars.map(function (c) { return { c: c, v: (c.c || [])[x.i] || 0 }; }).filter(function (y) { return y.v; }).sort(function (a, b) { return b.v - a.v; });
         body = '<div class="entries">' + list.map(function (y) {
-          return '<div class="ent" data-vin="' + esc(y.c.v) + '" style="cursor:pointer"><div><div>' + esc(y.c.m || y.c.v) + '</div><div class="m"><span class="mono">' + esc(y.c.v.slice(-6)) + '</span> · ' + esc(y.c.i.filter(String).join(', ')) + '</div></div><div class="a num">' + money(y.v) + '</div></div>';
+          return '<div class="ent" data-vin="' + esc(y.c.v) + '" style="cursor:pointer"><div><div>' + esc(y.c.m || y.c.v) + '</div><div class="m"><span class="mono">' + esc(y.c.v.slice(-6)) + '</span> · ' + esc(y.c.i.filter(String).join(', ')) + '</div></div><div class="a">' + money(y.v) + '</div></div>';
         }).join('') + '</div>';
       }
-      return '<div class="row' + (open ? ' open' : '') + '" data-item="' + x.i + '"><div class="main"><div class="ttl">' + esc(costLabel(x.n)) + '</div><div class="bar" style="height:4px"><i style="width:' + (x.v / tot * 100) + '%"></i></div></div>' +
-        '<div class="end"><div class="v num">' + money(x.v) + '</div><div class="s">' + Math.round(x.v / tot * 100) + '%</div></div></div>' + body;
+      return '<div class="row' + (open ? ' open' : '') + '" data-item="' + x.i + '"><div class="main"><div class="ttl">' + esc(costLabel(x.n)) + '</div><div class="bar4" style="width:' + Math.max(1, x.v / tot * 100) + '%;background:var(--s' + (costGroup(x.n) + 1) + ')"></div></div>' +
+        '<div class="end"><div class="v">' + money(x.v) + '</div><div class="s">' + pct1(x.v / tot) + '</div></div></div>' + body;
     }).join('') + '</div>';
     $('#main').innerHTML = h + foot();
   }
@@ -539,18 +1059,18 @@ main{padding:12px 16px 0}
   function loadPhotos(vin) {
     var count = (state.data.photoCounts || {})[vin] || 0;
     var box = $('#ph');
-    if (!count) { box.innerHTML = '<div class="meta" style="color:var(--muted)">Bu mashina rasmlari hali yuklanmagan.</div>'; return; }
+    if (!count) { box.innerHTML = '<div style="color:var(--muted);font-size:13.5px">Bu mashina rasmlari hali yuklanmagan.</div>'; return; }
     call('getPhotos', [state.init, vin], function (r) {
       var b = $('#ph'); if (!b) return;
       if (!r || r.ok === false || !r.photos || !r.photos.length) { b.innerHTML = '<div style="color:var(--muted)">Rasmlarni yuklab bo\'lmadi.</div>'; return; }
       b.innerHTML = '<div class="photos">' + r.photos.map(function (src) { return '<img src="' + src + '" alt="" data-zoom>'; }).join('') + '</div>' +
-        (r.total > r.photos.length ? '<div class="n" style="color:var(--muted);font-size:12px;margin-top:8px">Oxirgi ' + r.photos.length + ' ta rasm ko\'rsatildi (jami ' + r.total + ')</div>' : '');
+        (r.total > r.photos.length ? '<div style="color:var(--muted);font-size:12px;margin-top:8px">Oxirgi ' + r.photos.length + ' ta rasm ko\'rsatildi (jami ' + r.total + ')</div>' : '');
     }, function () { var b = $('#ph'); if (b) b.innerHTML = '<div style="color:var(--muted)">Rasmlarni yuklab bo\'lmadi.</div>'; });
   }
 
   /* ===== hodisalar ===== */
   document.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-tab],[data-inv],[data-vin],[data-filter],[data-sort],[data-status],[data-copy],[data-retry],[data-zoom],[data-cost],[data-item],[data-agg],.viewer,#back,#refresh');
+    var t = e.target.closest('[data-tab],[data-itab],[data-inv],[data-vin],[data-filter],[data-sort],[data-status],[data-copy],[data-retry],[data-zoom],[data-cost],[data-item],[data-agg],[data-tbl],[data-period],[data-metric],.viewer,#back,#refresh');
     if (!t) return;
     if (t.classList.contains('viewer')) { t.remove(); return; }
     if (t.id === 'back') { pop(); return; }
@@ -562,14 +1082,18 @@ main{padding:12px 16px 0}
       return;
     }
     if (t.hasAttribute('data-zoom')) { var w = document.createElement('div'); w.className = 'viewer'; w.innerHTML = '<img src="' + t.getAttribute('src') + '">'; document.body.appendChild(w); return; }
+    if (t.hasAttribute('data-tbl')) { var id = t.getAttribute('data-tbl'); state.tbl[id] = !state.tbl[id]; render(); return; }
+    if (t.hasAttribute('data-period')) { state.period = t.getAttribute('data-period'); render(); return; }
+    if (t.hasAttribute('data-metric')) { state.metric = t.getAttribute('data-metric'); render(); return; }
     if (t.hasAttribute('data-cost')) { push({ t: 'cost', v: t.getAttribute('data-cost') }); return; }
     if (t.hasAttribute('data-agg')) { push({ t: 'agg', sold: t.getAttribute('data-agg') === '1' }); return; }
     if (t.hasAttribute('data-item')) { var it = Number(t.getAttribute('data-item')); state.open = state.open === it ? -1 : it; render(); return; }
-    if (t.hasAttribute('data-tab')) { state.tab = t.getAttribute('data-tab'); render(); return; }
+    if (t.hasAttribute('data-tab')) { state.tab = t.getAttribute('data-tab'); render(); window.scrollTo(0, 0); return; }
+    if (t.hasAttribute('data-itab')) { state.itab = t.getAttribute('data-itab'); render(); if (!state.stack.length) window.scrollTo(0, 0); return; }
     if (t.hasAttribute('data-sort')) { state.sort = t.getAttribute('data-sort'); render(); return; }
     if (t.hasAttribute('data-filter')) { state.filter = t.getAttribute('data-filter'); render(); return; }
-    if (t.hasAttribute('data-status')) { state.tab = 'mashinalar'; state.filter = t.getAttribute('data-status'); render(); window.scrollTo(0, 0); return; }
-    if (t.hasAttribute('data-inv') && state.data.role === 'admin') { push({ t: 'inv', names: [t.getAttribute('data-inv')] }); return; }
+    if (t.hasAttribute('data-status')) { state.tab = 'mashinalar'; state.filter = t.getAttribute('data-status'); state.stack = []; render(); window.scrollTo(0, 0); return; }
+    if (t.hasAttribute('data-inv') && state.data.role === 'admin') { state.itab = 'kabinet'; push({ t: 'inv', names: [t.getAttribute('data-inv')] }); return; }
     if (t.hasAttribute('data-vin')) { push({ t: 'vin', v: t.getAttribute('data-vin') }); }
   });
   document.addEventListener('input', function (e) {
@@ -580,6 +1104,21 @@ main{padding:12px 16px 0}
       var el = document.getElementById(id); if (el) { el.focus(); try { el.setSelectionRange(pos, pos); } catch (er) {} }
     }
   });
+  /* tooltip: sichqoncha, barmoq va klaviatura */
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var t = e.target.closest && e.target.closest('[data-tip]');
+    if (t) showTip(t, e.clientX, e.clientY); else if (tipOn) hideTip();
+  });
+  var ptrAt = 0;
+  document.addEventListener('pointerdown', function (e) {
+    ptrAt = Date.now();
+    var t = e.target.closest && e.target.closest('[data-tip]');
+    if (t) showTip(t, e.clientX, e.clientY); else hideTip();
+  });
+  document.addEventListener('focusin', function (e) { if (Date.now() - ptrAt < 600) return; var t = e.target.closest && e.target.closest('[data-tip]'); if (t) showTip(t); });
+  document.addEventListener('focusout', function () { if (Date.now() - ptrAt < 600) return; hideTip(); });
+  window.addEventListener('scroll', function () { if (tipOn) hideTip(); }, { passive: true });
 
   getInit(function (init) {
     state.init = init || '';
