@@ -713,8 +713,8 @@ main>.card+.card,main>.card+.list,main>.list+.card{margin-top:12px}
     h += card('split', 'Foyda taqsimoti', 'Sotilgan ' + K('Sotilgan') + ' ta mashina foydasi', donut(fs, { label: 'foyda' }),
       table(['Kimga', 'Summa', 'Ulush'], fs.map(function (g) { return [g.l, money(g.v), pct1(g.v / (fi + fo + fz || 1))]; })));
     h += '<div class="grid" style="margin-top:10px">' +
-      tile('layers', 'Faol mashinalar', money(K("Yo'ldagi va skladdagi mashinalar tannarxi")), (K('Jami mashinalar') - K('Sotilgan')) + ' ta · tannarx', { attr: 'data-agg="0"' }) +
-      tile('receipt', 'Sotilganlar', money(K('Sotilgan mashinalar tannarxi')), K('Sotilgan') + ' ta · tannarx', { attr: 'data-agg="1"' }) + '</div>';
+      tile('layers', 'Faol', money(K("Yo'ldagi va skladdagi mashinalar tannarxi")), (K('Jami mashinalar') - K('Sotilgan')) + ' ta mashina tannarxi', { attr: 'data-agg="0"' }) +
+      tile('receipt', 'Sotilgan', money(K('Sotilgan mashinalar tannarxi')), K('Sotilgan') + ' ta mashina tannarxi', { attr: 'data-agg="1"' }) + '</div>';
     var bad = (d.kpi || []).filter(function (x) { return /sana formatida emas/i.test(x.l || '') && x.v > 0; });
     bad.forEach(function (x) { h += '<div class="warn">' + ic('alert', 18) + '<div>' + esc(x.l) + ': ' + x.v + ' ta. ' + esc(x.n || '') + '</div></div>'; });
     if (Math.abs(K('Tekshiruv: foyda − ulushlar')) > 1) h += '<div class="warn">' + ic('alert', 18) + '<div>Foyda taqsimotida farq bor: ' + money(K('Tekshiruv: foyda − ulushlar')) + '</div></div>';
