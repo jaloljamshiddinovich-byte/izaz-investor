@@ -119,6 +119,14 @@ main{padding:12px 16px 0}
 .split i{display:block;height:100%}
 .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--ink-2)}
 .legend b{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px;vertical-align:middle}
+.kv.link,.kpi.link{cursor:pointer}
+.kv.link .v::after,.kpi.link .l::after{content:" ›";color:var(--muted);font-weight:400}
+.row.open{background:var(--card-2)}
+.entries{background:var(--card-2);padding:2px 14px 10px;border-top:1px solid var(--line)}
+.ent{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px dashed var(--line);font-size:13px}
+.ent:first-child{border-top:0}
+.ent .m{color:var(--muted);font-size:12px;margin-top:1px}
+.ent .a{font-weight:600;white-space:nowrap;text-align:right}
 </style>
 </head>
 <body>
@@ -145,7 +153,7 @@ main{padding:12px 16px 0}
   var gsr = window.google && window.google.script && window.google.script.run;
   var STATUSES = ['Xitoy zavodda', 'Xitoy zavoddan chiqdi', 'Chegaraga keldi', 'Chegaradan chiqdi', 'Toshkent skladiga yetib keldi', 'Sotilgan'];
   var SHORT = ['Zavodda', 'Yo\'lda', 'Chegarada', 'O\'tdi', 'Skladda', 'Sotildi'];
-  var state = { init: '', data: null, tab: 'umumiy', stack: [], filter: '', q: '', iq: '', sort: 'inv' };
+  var state = { init: '', data: null, tab: 'umumiy', stack: [], filter: '', q: '', iq: '', sort: 'inv', costs: {}, open: -1 };
 
   /* ===== yordamchi ===== */
   function $(s) { return document.querySelector(s); }
@@ -162,8 +170,9 @@ main{padding:12px 16px 0}
   function ym(s) { var p = String(s).split('-'); return p.length === 2 ? p[1] + '.' + p[0] : s; }
   var toastT;
   function toast(m, ms) { var t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, ms || 2000); }
-  function kv(k, v, cls) { return '<div class="kv"><span class="k">' + esc(k) + '</span><span class="v num ' + (cls || '') + '">' + v + '</span></div>'; }
-  function kpiCard(l, v, n, cls, wide) { return '<div class="card kpi' + (wide ? ' wide' : '') + '"><div class="l">' + esc(l) + '</div><div class="v num ' + (cls || '') + '">' + v + '</div>' + (n ? '<div class="n">' + esc(n) + '</div>' : '') + '</div>'; }
+  function costLabel(n) { return n === 'Summa USD' ? 'Xarid summasi' : String(n).replace(/ USD$/, '').replace(/ sbs$/, ''); }
+  function kv(k, v, cls, attr) { return '<div class="kv' + (attr ? ' link" ' + attr + '>' : '">') + '<span class="k">' + esc(k) + '</span><span class="v num ' + (cls || '') + '">' + v + '</span></div>'; }
+  function kpiCard(l, v, n, cls, wide, attr) { return '<div class="card kpi' + (wide ? ' wide' : '') + (attr ? ' link" ' + attr + '>' : '">') + '<div class="l">' + esc(l) + '</div><div class="v num ' + (cls || '') + '">' + v + '</div>' + (n ? '<div class="n">' + esc(n) + '</div>' : '') + '</div>'; }
 
   /* ===== mavzu ===== */
   function setTheme(hash) {
@@ -222,7 +231,7 @@ main{padding:12px 16px 0}
       return;
     }
     if (!API_URL) { ok({ ok: false, code: 'no_auth' }); return; }
-    var q = fn === 'getData' ? '?action=data' + (args[1] ? '&force=1' : '') : '?action=photos&vin=' + encodeURIComponent(args[1]);
+    var q = fn === 'getData' ? '?action=data' + (args[1] ? '&force=1' : '') : '?action=' + (fn === 'getCosts' ? 'costs' : 'photos') + '&vin=' + encodeURIComponent(args[1]);
     fetch(API_URL + q + '&tg=' + encodeURIComponent(args[0])).then(function (r) { return r.json(); }).then(ok).catch(fail);
   }
   function load(force) {
@@ -264,14 +273,16 @@ main{padding:12px 16px 0}
     $('#tabs').hidden = !!top || d.role !== 'admin';
     if (top && top.t === 'inv') return investorView(top.names, true);
     if (top && top.t === 'vin') return vinView(top.v);
+    if (top && top.t === 'cost') return costView(top.v);
+    if (top && top.t === 'agg') return aggView(top.sold);
     if (d.role === 'investor') return investorView(d.names, false);
     renderTabs();
     if (state.tab === 'investorlar') adminInvestors();
     else if (state.tab === 'mashinalar') adminVins();
     else adminHome();
   }
-  function push(v) { state.stack.push(v); render(); window.scrollTo(0, 0); }
-  function pop() { if (!state.stack.length) return; state.stack.pop(); render(); }
+  function push(v) { state.open = -1; state.stack.push(v); render(); window.scrollTo(0, 0); }
+  function pop() { if (!state.stack.length) return; state.open = -1; state.stack.pop(); render(); }
 
   function renderTabs() {
     var T = [['umumiy', 'Umumiy'], ['investorlar', 'Investorlar'], ['mashinalar', 'Mashinalar']];
@@ -298,7 +309,8 @@ main{padding:12px 16px 0}
       kpiCard('Zakazdagi pul: egasi', money(K('Zakazdagi pul: egasi'))) +
       kpiCard('To\'langan dividend', money(K("To'langan dividend"))) +
       kpiCard('To\'lanishi kerak', money(K("To'lanishi kerak dividend")), 'Investorlar dividendi', K("To'lanishi kerak dividend") > 0 ? 'neg' : '') +
-      kpiCard('Yo\'ldagi va skladdagi mashinalar', money(K("Yo'ldagi va skladdagi mashinalar tannarxi")), 'Tannarx bo\'yicha', '', true) +
+      kpiCard('Yo\'ldagi va skladdagi mashinalar', money(K("Yo'ldagi va skladdagi mashinalar tannarxi")), 'Tannarx, moddalar bo\'yicha', '', false, 'data-agg="0"') +
+      kpiCard('Sotilgan mashinalar tannarxi', money(K('Sotilgan mashinalar tannarxi')), K('Sotilgan') + ' ta mashina', '', false, 'data-agg="1"') +
       '</div>';
     var tot = Math.max(fi + fo + fz, 1);
     h += '<div class="sec">Foyda taqsimoti</div><div class="card"><div class="split"><i style="width:' + (fi / tot * 100) + '%;background:var(--blue)"></i><i style="width:' + (fo / tot * 100) + '%;background:var(--teal)"></i><i style="width:' + (fz / tot * 100) + '%;background:var(--accent)"></i></div>' +
@@ -433,8 +445,11 @@ main{padding:12px 16px 0}
       var named = v.my.length > 1 || d.role === 'admin';
       h += kv(named ? x.n + ': ulush (bron)' : 'Ulushingiz (bron)', money(x.b)) + kv(named ? x.n + ': foyda' : 'Foydangiz', x.f ? money(x.f) : '—', x.f > 0 ? 'pos' : '');
     });
+    if (d.role !== 'admin') {
+      h += kv('Mashina tannarxi', money(v.t), '', 'data-cost="' + esc(v.v) + '"') + kv('Sotuv narxi', v.p ? money(v.p) : '—') + kv('Mashina foydasi', v.f ? money(v.f) : '—', v.f > 0 ? 'pos' : (v.f < 0 ? 'neg' : ''));
+    }
     if (d.role === 'admin') {
-      h += kv('Bron summasi', money(v.b)) + kv('Tannarx', money(v.t)) + kv('Sotuv', v.p ? money(v.p) : '—') + kv('Foyda', v.f ? money(v.f) : '—', v.f > 0 ? 'pos' : (v.f < 0 ? 'neg' : ''));
+      h += kv('Bron summasi', money(v.b)) + kv('Tannarx', money(v.t), '', 'data-cost="' + esc(v.v) + '"') + kv('Sotuv', v.p ? money(v.p) : '—') + kv('Foyda', v.f ? money(v.f) : '—', v.f > 0 ? 'pos' : (v.f < 0 ? 'neg' : ''));
       if (v.f) h += kv('Investorlar ulushi', money(v.fi)) + kv('Egasi ulushi', money(v.fo)) + kv('Izaz ulushi', money(v.fz));
     }
     h += '</div>';
@@ -448,6 +463,79 @@ main{padding:12px 16px 0}
     $('#main').innerHTML = h + foot();
     loadPhotos(v.v);
   }
+  /* --- xarajatlar --- */
+  function findVin(vin) {
+    var d = state.data;
+    return d.vins.filter(function (x) { return x.v === vin; })[0];
+  }
+  function costView(vin) {
+    var d = state.data, v = findVin(vin);
+    if (!v) { pop(); return; }
+    header('Xarajatlar', (v.m || '') + ' · ' + v.v.slice(-6));
+    var items = (d.costHead || []).map(function (n, i) { return { n: n, i: i, v: (v.c || [])[i] || 0 }; });
+    var used = items.filter(function (x) { return x.v; });
+    var tot = used.reduce(function (a, x) { return a + x.v; }, 0) || 1;
+    $('#hero').innerHTML = '<div class="lbl">Tannarx</div><div class="big num">' + money(v.t) + '</div>' +
+      '<div class="sub num">' + (v.p ? 'Sotuv ' + money(v.p) + ' · foyda ' + money(v.f) : esc(v.s || '')) + '</div>';
+    var ent = state.costs[vin];
+    var h = '<div class="sec">' + used.length + ' ta modda</div><div class="list">' + used.map(function (x) {
+      var open = state.open === x.i;
+      var body = '';
+      if (open) {
+        if (!ent) body = '<div class="entries"><div class="spin" style="margin:10px auto"></div></div>';
+        else if (ent.error) body = '<div class="entries"><div class="ent"><span class="m">Yuklab bo\'lmadi: ' + esc(ent.error) + '</span></div></div>';
+        else {
+          var list = ent[x.n] || [];
+          body = '<div class="entries">' + (list.length ? list.map(function (e) {
+            return '<div class="ent"><div><div>' + esc(e.t || '—') + '</div><div class="m">' + esc(e.d || '') + '</div></div><div class="a num">' + money(e.a) + (e.o ? '<div class="m">' + esc(e.o) + '</div>' : '') + '</div></div>';
+          }).join('') : '<div class="ent"><span class="m">Batafsil yozuv topilmadi, summa Hisobot varag\'idan.</span></div>') + '</div>';
+        }
+      }
+      return '<div class="row' + (open ? ' open' : '') + '" data-item="' + x.i + '"><div class="main"><div class="ttl">' + esc(costLabel(x.n)) + '</div><div class="bar" style="height:4px"><i style="width:' + (x.v / tot * 100) + '%"></i></div></div>' +
+        '<div class="end"><div class="v num">' + money(x.v) + '</div><div class="s">' + Math.round(x.v / tot * 100) + '%</div></div></div>' + body;
+    }).join('') + '</div>';
+    var zero = items.length - used.length;
+    if (zero) h += '<div class="foot" style="margin-top:10px">Yana ' + zero + ' ta modda bo\'yicha xarajat yo\'q</div>';
+    $('#main').innerHTML = h + foot();
+    if (!ent) loadCosts(vin);
+  }
+  function loadCosts(vin) {
+    if (state.costs[vin] === 0) return;
+    state.costs[vin] = 0;
+    call('getCosts', [state.init, vin], function (r) {
+      state.costs[vin] = r && r.ok ? (r.entries || {}) : { error: (r && (r.message || r.code)) || 'xato' };
+      var top = state.stack[state.stack.length - 1];
+      if (top && top.t === 'cost' && top.v === vin) render();
+    }, function (err) {
+      state.costs[vin] = { error: (err && err.message) || String(err) };
+      var top = state.stack[state.stack.length - 1];
+      if (top && top.t === 'cost' && top.v === vin) render();
+    });
+  }
+  function aggView(sold) {
+    var d = state.data;
+    var cars = d.vins.filter(function (v) { return sold ? v.s === 'Sotilgan' : v.s !== 'Sotilgan'; });
+    var items = (d.costHead || []).map(function (n, i) {
+      return { n: n, i: i, v: cars.reduce(function (a, c) { return a + ((c.c || [])[i] || 0); }, 0) };
+    }).filter(function (x) { return x.v; }).sort(function (a, b) { return b.v - a.v; });
+    var tot = items.reduce(function (a, x) { return a + x.v; }, 0) || 1;
+    header(sold ? 'Sotilgan mashinalar' : 'Yo\'ldagi va skladdagi', 'Tannarx moddalari');
+    $('#hero').innerHTML = '<div class="lbl">Jami tannarx</div><div class="big num">' + money(tot) + '</div><div class="sub num">' + cars.length + ' ta mashina</div>';
+    var h = '<div class="list">' + items.map(function (x) {
+      var open = state.open === x.i;
+      var body = '';
+      if (open) {
+        var list = cars.map(function (c) { return { c: c, v: (c.c || [])[x.i] || 0 }; }).filter(function (y) { return y.v; }).sort(function (a, b) { return b.v - a.v; });
+        body = '<div class="entries">' + list.map(function (y) {
+          return '<div class="ent" data-vin="' + esc(y.c.v) + '" style="cursor:pointer"><div><div>' + esc(y.c.m || y.c.v) + '</div><div class="m"><span class="mono">' + esc(y.c.v.slice(-6)) + '</span> · ' + esc(y.c.i.filter(String).join(', ')) + '</div></div><div class="a num">' + money(y.v) + '</div></div>';
+        }).join('') + '</div>';
+      }
+      return '<div class="row' + (open ? ' open' : '') + '" data-item="' + x.i + '"><div class="main"><div class="ttl">' + esc(costLabel(x.n)) + '</div><div class="bar" style="height:4px"><i style="width:' + (x.v / tot * 100) + '%"></i></div></div>' +
+        '<div class="end"><div class="v num">' + money(x.v) + '</div><div class="s">' + Math.round(x.v / tot * 100) + '%</div></div></div>' + body;
+    }).join('') + '</div>';
+    $('#main').innerHTML = h + foot();
+  }
+
   function loadPhotos(vin) {
     var count = (state.data.photoCounts || {})[vin] || 0;
     var box = $('#ph');
@@ -462,7 +550,7 @@ main{padding:12px 16px 0}
 
   /* ===== hodisalar ===== */
   document.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-tab],[data-inv],[data-vin],[data-filter],[data-sort],[data-status],[data-copy],[data-retry],[data-zoom],.viewer,#back,#refresh');
+    var t = e.target.closest('[data-tab],[data-inv],[data-vin],[data-filter],[data-sort],[data-status],[data-copy],[data-retry],[data-zoom],[data-cost],[data-item],[data-agg],.viewer,#back,#refresh');
     if (!t) return;
     if (t.classList.contains('viewer')) { t.remove(); return; }
     if (t.id === 'back') { pop(); return; }
@@ -474,6 +562,9 @@ main{padding:12px 16px 0}
       return;
     }
     if (t.hasAttribute('data-zoom')) { var w = document.createElement('div'); w.className = 'viewer'; w.innerHTML = '<img src="' + t.getAttribute('src') + '">'; document.body.appendChild(w); return; }
+    if (t.hasAttribute('data-cost')) { push({ t: 'cost', v: t.getAttribute('data-cost') }); return; }
+    if (t.hasAttribute('data-agg')) { push({ t: 'agg', sold: t.getAttribute('data-agg') === '1' }); return; }
+    if (t.hasAttribute('data-item')) { var it = Number(t.getAttribute('data-item')); state.open = state.open === it ? -1 : it; render(); return; }
     if (t.hasAttribute('data-tab')) { state.tab = t.getAttribute('data-tab'); render(); return; }
     if (t.hasAttribute('data-sort')) { state.sort = t.getAttribute('data-sort'); render(); return; }
     if (t.hasAttribute('data-filter')) { state.filter = t.getAttribute('data-filter'); render(); return; }
